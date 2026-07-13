@@ -34,4 +34,4 @@ No build step needed. Either:
 - **Images**: product cards currently show an icon-on-gradient placeholder instead of a photo (`.product-card__media`), by design. To use real product photos, swap that `<span>` in `productCardHTML()` / `editorsPickCardHTML()` for an `<img loading="lazy" src="..." alt="...">`.
 - **Dark mode**: currently detects system preference on load and toggles in memory for the session (no `localStorage`, to keep it portable). To persist the choice across visits, wrap a `localStorage` read/write in `initDarkMode()` in a `try/catch`.
 - **Newsletter form**: `initNewsletter()` currently just shows a success message on submit. Point the form at your actual email provider (Mailchimp, ConvertKit, a serverless function, etc.).
-- **Fonts**: loaded from Google Fonts via `@import` at the top of `style.css` (Sora, Manrope, Inter). Swap or self-host if you'd rather not depend on the Google Fonts CDN.
+- **Fonts**: Sora, Manrope, and Inter are self-hosted as variable WOFF2 files in `fonts/` (latin subset), declared via `@font-face` at the top of `style.css` — no Google Fonts CDN dependency, GDPR-friendly.
