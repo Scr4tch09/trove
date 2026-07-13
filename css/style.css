@@ -451,6 +451,22 @@ html.dark .toolbar select {
 #back-to-top.is-visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
 #back-to-top:hover { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
 
+/* ---------- Legal pages (Impressum / Datenschutz) ---------- */
+.legal { max-width: 72ch; margin-inline: auto; padding-block: 3.5rem var(--section-pad); }
+.legal h1 { font-size: clamp(1.9rem, 4vw, 2.6rem); margin-bottom: 0.5rem; }
+.legal .legal__updated { font-size: 0.85rem; color: var(--color-text-faint); margin-bottom: 2.5rem; }
+.legal h2 { font-size: 1.3rem; margin: 2.4rem 0 0.8rem; }
+.legal h3 { font-size: 1.05rem; margin: 1.6rem 0 0.6rem; }
+.legal p, .legal li { color: var(--color-text-soft); line-height: 1.7; }
+.legal p + p { margin-top: 0.8rem; }
+.legal ul { list-style: disc; padding-left: 1.3rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.legal a { color: var(--color-accent); }
+.legal a:hover { text-decoration: underline; }
+.legal address { font-style: normal; color: var(--color-text-soft); line-height: 1.7; }
+.legal .legal__placeholder { background: var(--color-accent-soft); border-radius: 4px; padding: 0.05em 0.35em; font-weight: 600; }
+.legal .legal__back { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-utility); font-size: 0.9rem; margin-bottom: 2rem; color: var(--color-text-soft); }
+.legal .legal__back:hover { color: var(--color-accent); text-decoration: none; }
+
 /* ---------- Responsive ---------- */
 @media (min-width: 640px) {
   .category-grid { grid-template-columns: repeat(3, 1fr); }
