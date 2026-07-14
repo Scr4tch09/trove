@@ -72,43 +72,43 @@ function icon(name, extraClass) {
    --------------------------------------------------------------------- */
 
 const CATEGORIES = [
-  { slug: 'home', name: 'Home', icon: 'home' },
-  { slug: 'kitchen', name: 'Kitchen', icon: 'kitchen' },
-  { slug: 'office', name: 'Office', icon: 'office' },
-  { slug: 'tech', name: 'Tech', icon: 'tech' },
-  { slug: 'travel', name: 'Travel', icon: 'travel' },
-  { slug: 'car', name: 'Car Accessories', icon: 'car' },
-  { slug: 'fitness', name: 'Fitness', icon: 'fitness' },
-  { slug: 'organization', name: 'Organization', icon: 'organization' },
-  { slug: 'edc', name: 'Everyday Carry', icon: 'edc' },
-  { slug: 'smart-gadgets', name: 'Smart Gadgets', icon: 'smartGadgets' },
-  { slug: 'pet', name: 'Pet Products', icon: 'pet' },
-  { slug: 'lifestyle', name: 'Lifestyle', icon: 'lifestyle' },
+  { slug: 'home', name: 'Home', name_de: 'Zuhause', icon: 'home' },
+  { slug: 'kitchen', name: 'Kitchen', name_de: 'Küche', icon: 'kitchen' },
+  { slug: 'office', name: 'Office', name_de: 'Büro', icon: 'office' },
+  { slug: 'tech', name: 'Tech', name_de: 'Technik', icon: 'tech' },
+  { slug: 'travel', name: 'Travel', name_de: 'Reisen', icon: 'travel' },
+  { slug: 'car', name: 'Car Accessories', name_de: 'Auto-Zubehör', icon: 'car' },
+  { slug: 'fitness', name: 'Fitness', name_de: 'Fitness', icon: 'fitness' },
+  { slug: 'organization', name: 'Organization', name_de: 'Ordnung', icon: 'organization' },
+  { slug: 'edc', name: 'Everyday Carry', name_de: 'Everyday Carry', icon: 'edc' },
+  { slug: 'smart-gadgets', name: 'Smart Gadgets', name_de: 'Smart Gadgets', icon: 'smartGadgets' },
+  { slug: 'pet', name: 'Pet Products', name_de: 'Haustiere', icon: 'pet' },
+  { slug: 'lifestyle', name: 'Lifestyle', name_de: 'Lifestyle', icon: 'lifestyle' },
 ];
 
 const PRODUCTS = [
-  { id: 'herb-keeper', asin: 'B01A6VUH50', image: 'https://m.media-amazon.com/images/I/71BWglW7M6L._AC_SX425_.jpg', title: 'Fresh Herb Keeper', category: 'kitchen', description: 'An acrylic herb keeper with a water reservoir that keeps cut basil and parsley fresh for weeks, not days.', price: 26.13, tags: ['featured', 'trending'], dateAdded: '2026-06-18', trendingScore: 92, usefulScore: 95, gradientIndex: 0 },
-  { id: 'cable-strip', asin: 'B0DXDVLV4W', image: 'https://m.media-amazon.com/images/I/61UGOC37W7L._AC_SY450_.jpg', title: 'Magnetic Cable Clips (6-Pack)', category: 'office', description: 'Self-adhesive magnetic clips that keep charging cables snapped in place on your desk — grab and release one-handed.', price: 6.45, tags: ['featured', 'editors-pick'], dateAdded: '2026-05-28', trendingScore: 75, usefulScore: 91, gradientIndex: 2 },
-  { id: 'bt-tracker', asin: 'B0GWZRRXQF', image: 'https://m.media-amazon.com/images/I/714uZHoSTCL._AC_SX425_.jpg', title: 'Bluetooth Key Finder (4-Pack)', category: 'tech', description: 'Coin-sized tags that locate keys, bags, or luggage through Apple Find My or Google Find My Device.', price: 29.98, tags: ['trending', 'most-loved'], dateAdded: '2026-06-05', trendingScore: 98, usefulScore: 90, gradientIndex: 3 },
-  { id: 'packing-cubes', asin: 'B0BY4RWC19', image: 'https://m.media-amazon.com/images/I/81sYsumXLZL._AC_SY450_.jpg', title: 'Compression Packing Cubes Set', category: 'travel', description: 'A seven-piece compression set made from recycled bottles that shrinks clothing by a third, so carry-on-only trips actually work.', price: 38.24, tags: ['featured', 'editors-pick'], dateAdded: '2026-06-22', trendingScore: 80, usefulScore: 93, gradientIndex: 4 },
-  { id: 'trunk-organizer', asin: 'B08B446GFC', image: 'https://m.media-amazon.com/images/I/81tOvk78l4L._AC_SX425_.jpg', title: 'Collapsible Trunk Organizer', category: 'car', description: 'A 65-litre collapsible boot organizer with dividers, straps, and a non-slip base, so shopping stops sliding around.', price: 37.99, tags: ['new'], dateAdded: '2026-07-08', trendingScore: 55, usefulScore: 78, gradientIndex: 5 },
-  { id: 'massage-gun', asin: 'B0G1T184VK', image: 'https://m.media-amazon.com/images/I/61tdBTgHA5L._AC_SY355_.jpg', title: 'Massage Gun Mini', category: 'fitness', description: 'Pocket-sized percussion massager with enough power for a full post-run recovery.', price: 39.99, tags: ['trending', 'featured'], dateAdded: '2026-06-10', trendingScore: 88, usefulScore: 85, gradientIndex: 0 },
-  { id: 'drawer-dividers', asin: 'B0D7YZ83PS', image: 'https://m.media-amazon.com/images/I/81xPZ4Mo-rL._AC_SY300_SX300_QL70_ML2_.jpg', title: 'Drawer Organizer Trays (25-Piece)', category: 'organization', description: 'Twenty-five trays in four sizes that mix and match to bring order to any drawer — desk, kitchen, or makeup.', price: 21.99, tags: ['editors-pick'], dateAdded: '2026-05-20', trendingScore: 60, usefulScore: 87, gradientIndex: 1 },
-  { id: 'pry-tool', asin: 'B07RFH1M4J', image: 'https://m.media-amazon.com/images/I/717EADe2wOL._AC_SX425_.jpg', title: 'Keychain Multitool', category: 'edc', description: 'A flat stainless-steel key tool with 20 functions that opens boxes and bottles, scrapes, and screws — and still fits on a keyring.', price: 9.75, tags: ['new', 'trending'], dateAdded: '2026-07-05', trendingScore: 84, usefulScore: 82, gradientIndex: 2 },
-  { id: 'smart-bottle', asin: 'B0DR8HDCN4', image: 'https://m.media-amazon.com/images/I/612-vt5RZSL._AC_SY300_SX300_QL70_ML2_.jpg', title: 'Smart Hydration Water Bottle', category: 'smart-gadgets', description: 'An insulated 710 ml steel bottle that tracks how much you drink and reminds you when you fall behind.', price: 49.99, tags: ['featured', 'most-loved'], dateAdded: '2026-06-01', trendingScore: 76, usefulScore: 84, gradientIndex: 3 },
-  { id: 'treat-ball', asin: 'B0DHZZN2VX', image: 'https://m.media-amazon.com/images/I/7102yH7FuuL._AC_SX425_.jpg', title: 'Self-Rolling Dog Ball', category: 'pet', description: 'Rolls and bounces on its own in three play modes to keep dogs busy — waterproof and USB-C rechargeable.', price: 33.91, tags: ['trending'], dateAdded: '2026-06-14', trendingScore: 79, usefulScore: 80, gradientIndex: 4 },
-  { id: 'sunrise-alarm', asin: 'B0C5M5C8NG', image: 'https://m.media-amazon.com/images/I/61R6-9Y-OGL._AC_SX425_.jpg', title: 'Sunrise Alarm Clock Light', category: 'lifestyle', description: 'Fades in like a sunrise over 30 minutes so you wake up before the alarm ever sounds.', price: 37.99, tags: ['editors-pick', 'new'], dateAdded: '2026-06-29', trendingScore: 71, usefulScore: 90, gradientIndex: 5 },
-  { id: 'jar-opener', asin: 'B09PVLGLLM', image: 'https://m.media-amazon.com/images/I/716EE3A7QxL._AC_SY450_.jpg', title: 'One-Handed Jar Opener', category: 'kitchen', description: "A textured lever that grips any lid size, so one twist opens jars sore hands can't.", price: 19.99, tags: ['new'], dateAdded: '2026-07-01', trendingScore: 45, usefulScore: 83, gradientIndex: 0 },
-  { id: 'laptop-riser', asin: 'B0FX4LFBD8', image: 'https://m.media-amazon.com/images/I/71kLF5M+yNL._AC_SX425_.jpg', title: 'Adjustable Laptop Stand', category: 'office', description: 'Lifts your screen to eye level on a 360-degree rotating base — fits every laptop from 10 to 15.6 inches.', price: 16.14, tags: ['most-loved'], dateAdded: '2026-05-15', trendingScore: 58, usefulScore: 86, gradientIndex: 1 },
-  { id: 'travel-adapter', asin: 'B0C69B2KJX', image: 'https://m.media-amazon.com/images/I/61lIgCzGYaL._AC_SY300_SX300_QL70_ML2_.jpg', title: 'Universal Travel Adapter', category: 'travel', description: 'One adapter for outlets in 150+ countries, with two USB-A and two USB-C ports to charge four devices at once.', price: 15.29, tags: ['featured', 'most-loved'], dateAdded: '2026-06-08', trendingScore: 82, usefulScore: 92, gradientIndex: 2 },
-  { id: 'passport-organizer', asin: 'B07MPP7R34', image: 'https://m.media-amazon.com/images/I/81Khm-osyTL._AC_SY300_SX300_QL70_ML2_.jpg', title: 'RFID-Blocking Passport Organizer', category: 'travel', description: 'Holds passports, boarding passes, and cards while blocking wireless skimming.', price: 9.34, tags: ['new'], dateAdded: '2026-07-10', trendingScore: 40, usefulScore: 75, gradientIndex: 3 },
-  { id: 'rfid-wallet', asin: 'B08KS9WCCV', image: 'https://m.media-amazon.com/images/I/81coE66hm8L._AC_SY450_.jpg', title: 'Slim RFID Wallet', category: 'edc', description: 'Carries your cards plus coins in a case slimmer than a phone, with RFID blocking built in.', price: 37.42, tags: ['editors-pick', 'most-loved'], dateAdded: '2026-05-25', trendingScore: 68, usefulScore: 89, gradientIndex: 4 },
-  { id: 'cat-groomer', asin: 'B0949HSVBH', image: 'https://m.media-amazon.com/images/I/71H2BlaY4uL._SY355_PIbundle-4,TopRight,0,0_AA355SH20_.jpg', title: 'Cat Self-Groomer Corner Brush', category: 'pet', description: 'Mounts on any wall corner so your cat brushes itself while you do literally nothing.', price: 19.99, tags: ['new', 'trending'], dateAdded: '2026-07-06', trendingScore: 63, usefulScore: 77, gradientIndex: 5 },
-  { id: 'floating-candles', asin: 'B004UVCXCI', image: 'https://m.media-amazon.com/images/I/61CEc1bnnDL._AC_SX342_SY445_QL70_ML2_.jpg', title: 'Floating Candles (20-Pack)', category: 'home', description: 'Ivory floating candles that burn for 4.5 hours — a bowl of water becomes instant table or garden ambience.', price: 7.99, tags: ['new'], dateAdded: '2026-07-14', trendingScore: 52, usefulScore: 74, gradientIndex: 1 },
-  { id: 'tower-fan', asin: 'B09MKPDJRT', image: 'https://m.media-amazon.com/images/I/71Fg6Xt6eHL._AC_SY550_.jpg', title: 'Quiet Tower Fan with Remote', category: 'home', description: 'A 90-degree oscillating tower fan with 8 speeds, 4 modes, and an 8-hour timer — quiet enough for bedrooms.', price: 89.99, tags: ['new', 'featured'], dateAdded: '2026-07-14', trendingScore: 81, usefulScore: 88, gradientIndex: 2 },
-  { id: 'stick-vacuum', asin: 'B0F13KXRG8', image: 'https://m.media-amazon.com/images/I/71UKuTuX71L._AC_SY450_.jpg', title: 'Cordless Stick Vacuum', category: 'home', description: 'A self-standing cordless vacuum with anti-tangle brush, wall dock, and 65 minutes of runtime — handles pet hair and hard floors.', price: 132.99, tags: ['new', 'trending'], dateAdded: '2026-07-14', trendingScore: 77, usefulScore: 86, gradientIndex: 3 },
-  { id: 'crate-rack', asin: 'B0GBRHCXPW', image: 'https://m.media-amazon.com/images/I/81x8oKxmBOL._AC_SY450_.jpg', title: 'Beverage Crate Rack', category: 'home', description: 'A two-tier steel rack that keeps up to six drink crates tidy and off the floor — kitchen, hallway, or cellar.', price: 59.99, tags: ['new'], dateAdded: '2026-07-14', trendingScore: 48, usefulScore: 79, gradientIndex: 4 },
-  { id: 'foot-massager', asin: 'B0B23Z1KDD', image: 'https://m.media-amazon.com/images/I/71VK75hHuVL._AC_SY355_.jpg', title: 'Foot Massager with Heat', category: 'home', description: 'Kneading, rolling, and air-compression massage with gentle heat for tired feet — fits sizes up to EU 46.', price: 104.05, tags: ['new'], dateAdded: '2026-07-14', trendingScore: 58, usefulScore: 81, gradientIndex: 5 },
+  { id: 'herb-keeper', asin: 'B01A6VUH50', image: 'https://m.media-amazon.com/images/I/71BWglW7M6L._AC_SX425_.jpg', title: 'Fresh Herb Keeper', category: 'kitchen', description: 'An acrylic herb keeper with a water reservoir that keeps cut basil and parsley fresh for weeks, not days.', title_de: "Kräuter-Frischhaltebox", description_de: "Eine Acryl-Frischhaltebox mit Wasserreservoir, die Basilikum und Petersilie wochenlang frisch hält statt nur Tage.", price: 26.13, tags: ['featured', 'trending'], dateAdded: '2026-06-18', trendingScore: 92, usefulScore: 95, gradientIndex: 0 },
+  { id: 'cable-strip', asin: 'B0DXDVLV4W', image: 'https://m.media-amazon.com/images/I/61UGOC37W7L._AC_SY450_.jpg', title: 'Magnetic Cable Clips (6-Pack)', category: 'office', description: 'Self-adhesive magnetic clips that keep charging cables snapped in place on your desk — grab and release one-handed.', title_de: "Magnetische Kabelclips (6er-Pack)", description_de: "Selbstklebende Magnetclips, die Ladekabel griffbereit am Schreibtisch halten — einhändig andocken und lösen.", price: 6.45, tags: ['featured', 'editors-pick'], dateAdded: '2026-05-28', trendingScore: 75, usefulScore: 91, gradientIndex: 2 },
+  { id: 'bt-tracker', asin: 'B0GWZRRXQF', image: 'https://m.media-amazon.com/images/I/714uZHoSTCL._AC_SX425_.jpg', title: 'Bluetooth Key Finder (4-Pack)', category: 'tech', description: 'Coin-sized tags that locate keys, bags, or luggage through Apple Find My or Google Find My Device.', title_de: "Bluetooth-Schlüsselfinder (4er-Pack)", description_de: "Münzgroße Tags, die Schlüssel, Taschen oder Koffer über Apple „Wo ist?“ oder Google „Mein Gerät finden“ orten.", price: 29.98, tags: ['trending', 'most-loved'], dateAdded: '2026-06-05', trendingScore: 98, usefulScore: 90, gradientIndex: 3 },
+  { id: 'packing-cubes', asin: 'B0BY4RWC19', image: 'https://m.media-amazon.com/images/I/81sYsumXLZL._AC_SY450_.jpg', title: 'Compression Packing Cubes Set', category: 'travel', description: 'A seven-piece compression set made from recycled bottles that shrinks clothing by a third, so carry-on-only trips actually work.', title_de: "Kompressions-Packwürfel-Set", description_de: "Ein 7-teiliges Kompressions-Set aus recycelten Flaschen, das Kleidung um ein Drittel schrumpft — Handgepäck-Reisen funktionieren endlich.", price: 38.24, tags: ['featured', 'editors-pick'], dateAdded: '2026-06-22', trendingScore: 80, usefulScore: 93, gradientIndex: 4 },
+  { id: 'trunk-organizer', asin: 'B08B446GFC', image: 'https://m.media-amazon.com/images/I/81tOvk78l4L._AC_SX425_.jpg', title: 'Collapsible Trunk Organizer', category: 'car', description: 'A 65-litre collapsible boot organizer with dividers, straps, and a non-slip base, so shopping stops sliding around.', title_de: "Faltbarer Kofferraum-Organizer", description_de: "Ein faltbarer 65-Liter-Organizer mit Fächern, Gurten und rutschfestem Boden — Schluss mit rutschendem Einkauf.", price: 37.99, tags: ['new'], dateAdded: '2026-07-08', trendingScore: 55, usefulScore: 78, gradientIndex: 5 },
+  { id: 'massage-gun', asin: 'B0G1T184VK', image: 'https://m.media-amazon.com/images/I/61tdBTgHA5L._AC_SY355_.jpg', title: 'Massage Gun Mini', category: 'fitness', description: 'Pocket-sized percussion massager with enough power for a full post-run recovery.', title_de: "Mini-Massagepistole", description_de: "Massagepistole im Hosentaschenformat mit genug Power für die komplette Regeneration nach dem Lauf.", price: 39.99, tags: ['trending', 'featured'], dateAdded: '2026-06-10', trendingScore: 88, usefulScore: 85, gradientIndex: 0 },
+  { id: 'drawer-dividers', asin: 'B0D7YZ83PS', image: 'https://m.media-amazon.com/images/I/81xPZ4Mo-rL._AC_SY300_SX300_QL70_ML2_.jpg', title: 'Drawer Organizer Trays (25-Piece)', category: 'organization', description: 'Twenty-five trays in four sizes that mix and match to bring order to any drawer — desk, kitchen, or makeup.', title_de: "Schubladen-Organizer (25-teilig)", description_de: "Fünfundzwanzig Einsätze in vier Größen, die sich beliebig kombinieren lassen — für Schreibtisch, Küche oder Schminktisch.", price: 21.99, tags: ['editors-pick'], dateAdded: '2026-05-20', trendingScore: 60, usefulScore: 87, gradientIndex: 1 },
+  { id: 'pry-tool', asin: 'B07RFH1M4J', image: 'https://m.media-amazon.com/images/I/717EADe2wOL._AC_SX425_.jpg', title: 'Keychain Multitool', category: 'edc', description: 'A flat stainless-steel key tool with 20 functions that opens boxes and bottles, scrapes, and screws — and still fits on a keyring.', title_de: "Schlüsselanhänger-Multitool", description_de: "Ein flaches Edelstahl-Tool mit 20 Funktionen: öffnet Kartons und Flaschen, schabt und schraubt — und passt an jeden Schlüsselbund.", price: 9.75, tags: ['new', 'trending'], dateAdded: '2026-07-05', trendingScore: 84, usefulScore: 82, gradientIndex: 2 },
+  { id: 'smart-bottle', asin: 'B0DR8HDCN4', image: 'https://m.media-amazon.com/images/I/612-vt5RZSL._AC_SY300_SX300_QL70_ML2_.jpg', title: 'Smart Hydration Water Bottle', category: 'smart-gadgets', description: 'An insulated 710 ml steel bottle that tracks how much you drink and reminds you when you fall behind.', title_de: "Smarte Trinkflasche", description_de: "Eine isolierte 710-ml-Edelstahlflasche, die dein Trinkpensum trackt und dich per App erinnert, wenn du hinterherhinkst.", price: 49.99, tags: ['featured', 'most-loved'], dateAdded: '2026-06-01', trendingScore: 76, usefulScore: 84, gradientIndex: 3 },
+  { id: 'treat-ball', asin: 'B0DHZZN2VX', image: 'https://m.media-amazon.com/images/I/7102yH7FuuL._AC_SX425_.jpg', title: 'Self-Rolling Dog Ball', category: 'pet', description: 'Rolls and bounces on its own in three play modes to keep dogs busy — waterproof and USB-C rechargeable.', title_de: "Selbstrollender Hundeball", description_de: "Rollt und hüpft von selbst in drei Spielmodi und hält Hunde beschäftigt — wasserdicht und per USB-C aufladbar.", price: 33.91, tags: ['trending'], dateAdded: '2026-06-14', trendingScore: 79, usefulScore: 80, gradientIndex: 4 },
+  { id: 'sunrise-alarm', asin: 'B0C5M5C8NG', image: 'https://m.media-amazon.com/images/I/61R6-9Y-OGL._AC_SX425_.jpg', title: 'Sunrise Alarm Clock Light', category: 'lifestyle', description: 'Fades in like a sunrise over 30 minutes so you wake up before the alarm ever sounds.', title_de: "Lichtwecker mit Sonnenaufgang", description_de: "Wird über 30 Minuten langsam hell wie ein Sonnenaufgang — du bist wach, bevor der Alarm überhaupt klingelt.", price: 37.99, tags: ['editors-pick', 'new'], dateAdded: '2026-06-29', trendingScore: 71, usefulScore: 90, gradientIndex: 5 },
+  { id: 'jar-opener', asin: 'B09PVLGLLM', image: 'https://m.media-amazon.com/images/I/716EE3A7QxL._AC_SY450_.jpg', title: 'One-Handed Jar Opener', category: 'kitchen', description: "A textured lever that grips any lid size, so one twist opens jars sore hands can't.", title_de: "Einhand-Glasöffner", description_de: "Ein griffiger Hebel für jede Deckelgröße — eine Drehung öffnet Gläser, die müde Hände nicht mehr aufbekommen.", price: 19.99, tags: ['new'], dateAdded: '2026-07-01', trendingScore: 45, usefulScore: 83, gradientIndex: 0 },
+  { id: 'laptop-riser', asin: 'B0FX4LFBD8', image: 'https://m.media-amazon.com/images/I/71kLF5M+yNL._AC_SX425_.jpg', title: 'Adjustable Laptop Stand', category: 'office', description: 'Lifts your screen to eye level on a 360-degree rotating base — fits every laptop from 10 to 15.6 inches.', title_de: "Verstellbarer Laptopständer", description_de: "Hebt den Bildschirm auf Augenhöhe, mit 360-Grad-Drehfuß — passt für alle Laptops von 10 bis 15,6 Zoll.", price: 16.14, tags: ['most-loved'], dateAdded: '2026-05-15', trendingScore: 58, usefulScore: 86, gradientIndex: 1 },
+  { id: 'travel-adapter', asin: 'B0C69B2KJX', image: 'https://m.media-amazon.com/images/I/61lIgCzGYaL._AC_SY300_SX300_QL70_ML2_.jpg', title: 'Universal Travel Adapter', category: 'travel', description: 'One adapter for outlets in 150+ countries, with two USB-A and two USB-C ports to charge four devices at once.', title_de: "Universal-Reiseadapter", description_de: "Ein Adapter für Steckdosen in über 150 Ländern, mit zwei USB-A- und zwei USB-C-Ports für vier Geräte gleichzeitig.", price: 15.29, tags: ['featured', 'most-loved'], dateAdded: '2026-06-08', trendingScore: 82, usefulScore: 92, gradientIndex: 2 },
+  { id: 'passport-organizer', asin: 'B07MPP7R34', image: 'https://m.media-amazon.com/images/I/81Khm-osyTL._AC_SY300_SX300_QL70_ML2_.jpg', title: 'RFID-Blocking Passport Organizer', category: 'travel', description: 'Holds passports, boarding passes, and cards while blocking wireless skimming.', title_de: "Reisepass-Organizer mit RFID-Schutz", description_de: "Platz für Pässe, Bordkarten und Karten — und blockiert dabei kabelloses Auslesen.", price: 9.34, tags: ['new'], dateAdded: '2026-07-10', trendingScore: 40, usefulScore: 75, gradientIndex: 3 },
+  { id: 'rfid-wallet', asin: 'B08KS9WCCV', image: 'https://m.media-amazon.com/images/I/81coE66hm8L._AC_SY450_.jpg', title: 'Slim RFID Wallet', category: 'edc', description: 'Carries your cards plus coins in a case slimmer than a phone, with RFID blocking built in.', title_de: "Slim Wallet mit RFID-Schutz", description_de: "Karten und Münzen in einem Etui, schlanker als ein Smartphone — RFID-Schutz inklusive.", price: 37.42, tags: ['editors-pick', 'most-loved'], dateAdded: '2026-05-25', trendingScore: 68, usefulScore: 89, gradientIndex: 4 },
+  { id: 'cat-groomer', asin: 'B0949HSVBH', image: 'https://m.media-amazon.com/images/I/71H2BlaY4uL._SY355_PIbundle-4,TopRight,0,0_AA355SH20_.jpg', title: 'Cat Self-Groomer Corner Brush', category: 'pet', description: 'Mounts on any wall corner so your cat brushes itself while you do literally nothing.', title_de: "Katzen-Eckbürste zur Selbstpflege", description_de: "Wird an jeder Wandecke montiert, damit sich die Katze selbst bürstet — während du buchstäblich nichts tust.", price: 19.99, tags: ['new', 'trending'], dateAdded: '2026-07-06', trendingScore: 63, usefulScore: 77, gradientIndex: 5 },
+  { id: 'floating-candles', asin: 'B004UVCXCI', image: 'https://m.media-amazon.com/images/I/61CEc1bnnDL._AC_SX342_SY445_QL70_ML2_.jpg', title: 'Floating Candles (20-Pack)', category: 'home', description: 'Ivory floating candles that burn for 4.5 hours — a bowl of water becomes instant table or garden ambience.', title_de: "Schwimmkerzen (20er-Pack)", description_de: "Elfenbeinfarbene Schwimmkerzen mit 4,5 Stunden Brenndauer — eine Schale Wasser wird zur Tisch- oder Gartendeko.", price: 7.99, tags: ['new'], dateAdded: '2026-07-14', trendingScore: 52, usefulScore: 74, gradientIndex: 1 },
+  { id: 'tower-fan', asin: 'B09MKPDJRT', image: 'https://m.media-amazon.com/images/I/71Fg6Xt6eHL._AC_SY550_.jpg', title: 'Quiet Tower Fan with Remote', category: 'home', description: 'A 90-degree oscillating tower fan with 8 speeds, 4 modes, and an 8-hour timer — quiet enough for bedrooms.', title_de: "Leiser Turmventilator mit Fernbedienung", description_de: "Oszilliert um 90 Grad, mit 8 Stufen, 4 Modi und 8-Stunden-Timer — leise genug fürs Schlafzimmer.", price: 89.99, tags: ['new', 'featured'], dateAdded: '2026-07-14', trendingScore: 81, usefulScore: 88, gradientIndex: 2 },
+  { id: 'stick-vacuum', asin: 'B0F13KXRG8', image: 'https://m.media-amazon.com/images/I/71UKuTuX71L._AC_SY450_.jpg', title: 'Cordless Stick Vacuum', category: 'home', description: 'A self-standing cordless vacuum with anti-tangle brush, wall dock, and 65 minutes of runtime — handles pet hair and hard floors.', title_de: "Akku-Stielstaubsauger", description_de: "Selbststehender Akkusauger mit Anti-Tangle-Bürste, Wandstation und 65 Minuten Laufzeit — für Tierhaare und Hartböden.", price: 132.99, tags: ['new', 'trending'], dateAdded: '2026-07-14', trendingScore: 77, usefulScore: 86, gradientIndex: 3 },
+  { id: 'crate-rack', asin: 'B0GBRHCXPW', image: 'https://m.media-amazon.com/images/I/81x8oKxmBOL._AC_SY450_.jpg', title: 'Beverage Crate Rack', category: 'home', description: 'A two-tier steel rack that keeps up to six drink crates tidy and off the floor — kitchen, hallway, or cellar.', title_de: "Getränkekistenregal", description_de: "Ein zweistöckiges Stahlregal für bis zu sechs Getränkekisten — ordentlich und vom Boden weg, in Küche, Flur oder Keller.", price: 59.99, tags: ['new'], dateAdded: '2026-07-14', trendingScore: 48, usefulScore: 79, gradientIndex: 4 },
+  { id: 'foot-massager', asin: 'B0B23Z1KDD', image: 'https://m.media-amazon.com/images/I/71VK75hHuVL._AC_SY355_.jpg', title: 'Foot Massager with Heat', category: 'home', description: 'Kneading, rolling, and air-compression massage with gentle heat for tired feet — fits sizes up to EU 46.', title_de: "Fußmassagegerät mit Wärme", description_de: "Knet-, Roll- und Luftkompressionsmassage mit sanfter Wärme für müde Füße — bis Schuhgröße 46.", price: 104.05, tags: ['new'], dateAdded: '2026-07-14', trendingScore: 58, usefulScore: 81, gradientIndex: 5 },
 ];
 
 const EDITOR_NOTES = {
@@ -119,19 +119,27 @@ const EDITOR_NOTES = {
   'rfid-wallet': 'Half the thickness of a normal wallet, none of the compromise.',
 };
 
+const EDITOR_NOTES_DE = {
+  'cable-strip': 'Die Fünf-Sekunden-Lösung für einen Schreibtisch, der immer chaotisch aussieht.',
+  'packing-cubes': 'Der einzige Reisekauf, der wirklich verändert hat, wie wir packen.',
+  'drawer-dividers': 'Löst das Problem der „Alles-Schublade" ein für alle Mal.',
+  'sunrise-alarm': 'Wir waren skeptisch. Dann sind wir zum ersten Mal ohne schrillen Alarm aufgewacht.',
+  'rfid-wallet': 'Halb so dick wie ein normales Portemonnaie, ohne jeden Kompromiss.',
+};
+
 const COLLECTIONS = [
-  { id: 'desk-upgrade', title: 'The Desk Upgrade', description: 'Small changes that make an 8-hour workday feel shorter.', categories: ['office', 'tech'], icon: 'office', gradientIndex: 2 },
-  { id: 'travel-ready', title: 'Ready to Travel', description: 'Everything that earns its place in a carry-on.', categories: ['travel'], icon: 'travel', gradientIndex: 4 },
-  { id: 'smart-home', title: 'Smart Home, Simplified', description: 'Small upgrades with an outsized effect on daily life.', categories: ['smart-gadgets', 'home'], icon: 'smartGadgets', gradientIndex: 0 },
+  { id: 'desk-upgrade', title: 'The Desk Upgrade', title_de: 'Das Schreibtisch-Upgrade', description: 'Small changes that make an 8-hour workday feel shorter.', description_de: 'Kleine Veränderungen, die einen 8-Stunden-Tag kürzer anfühlen lassen.', categories: ['office', 'tech'], icon: 'office', gradientIndex: 2 },
+  { id: 'travel-ready', title: 'Ready to Travel', title_de: 'Bereit zum Reisen', description: 'Everything that earns its place in a carry-on.', description_de: 'Alles, was sich seinen Platz im Handgepäck verdient.', categories: ['travel'], icon: 'travel', gradientIndex: 4 },
+  { id: 'smart-home', title: 'Smart Home, Simplified', title_de: 'Smart Home, einfach gemacht', description: 'Small upgrades with an outsized effect on daily life.', description_de: 'Kleine Upgrades mit großer Wirkung auf den Alltag.', categories: ['smart-gadgets', 'home'], icon: 'smartGadgets', gradientIndex: 0 },
 ];
 
 const FAQS = [
-  { q: 'How do you choose which products to feature?', a: 'Every product is used or researched before it\u2019s listed. We look for things that solve a real, specific problem \u2014 not just items with good marketing.' },
-  { q: 'Does clicking your links cost me anything extra?', a: "No. Prices stay exactly the same whether you use our link or go directly to the retailer. The commission comes from the retailer's marketing budget, not your wallet." },
-  { q: 'Are you affiliated with Amazon?', a: "We participate in the Amazon Associates program and earn a commission on qualifying purchases, but we're an independent site \u2014 not owned or operated by Amazon." },
-  { q: 'How often do you add new products?', a: 'A few times a week. Check New Discoveries below if you want to see what just landed.' },
-  { q: 'Can I suggest a product?', a: "Yes \u2014 send it through the contact link. If it fits what we look for, we'll test it." },
-  { q: 'Do brands pay to be featured?', a: "No. Placement isn't for sale, and it never will be \u2014 that's the only way these picks stay worth trusting." },
+  { q: 'How do you choose which products to feature?', q_de: 'Wie w\u00e4hlt ihr die Produkte aus?', a: 'Every product is used or researched before it\u2019s listed. We look for things that solve a real, specific problem \u2014 not just items with good marketing.', a_de: 'Jedes Produkt wird vor der Aufnahme genutzt oder gr\u00fcndlich recherchiert. Wir suchen Dinge, die ein echtes, konkretes Problem l\u00f6sen \u2014 nicht nur Produkte mit gutem Marketing.' },
+  { q: 'Does clicking your links cost me anything extra?', q_de: 'Kostet mich ein Klick auf eure Links extra?', a: "No. Prices stay exactly the same whether you use our link or go directly to the retailer. The commission comes from the retailer's marketing budget, not your wallet.", a_de: 'Nein. Die Preise sind identisch, ob du \u00fcber unseren Link gehst oder direkt zum H\u00e4ndler. Die Provision kommt aus dem Marketingbudget des H\u00e4ndlers, nicht aus deinem Geldbeutel.' },
+  { q: 'Are you affiliated with Amazon?', q_de: 'Seid ihr mit Amazon verbunden?', a: "We participate in the Amazon Associates program and earn a commission on qualifying purchases, but we're an independent site \u2014 not owned or operated by Amazon.", a_de: 'Wir nehmen am Amazon-Partnerprogramm teil und verdienen an qualifizierten Verk\u00e4ufen \u2014 sind aber eine unabh\u00e4ngige Seite und geh\u00f6ren nicht zu Amazon.' },
+  { q: 'How often do you add new products?', q_de: 'Wie oft kommen neue Produkte dazu?', a: 'A few times a week. Check New Discoveries below if you want to see what just landed.', a_de: 'Mehrmals pro Woche. Schau unten bei \u201eNeu entdeckt" vorbei, wenn du sehen willst, was gerade gelandet ist.' },
+  { q: 'Can I suggest a product?', q_de: 'Kann ich ein Produkt vorschlagen?', a: "Yes \u2014 send it through the contact link. If it fits what we look for, we'll test it.", a_de: 'Ja \u2014 schick es uns \u00fcber den Kontakt-Link. Wenn es zu unseren Kriterien passt, testen wir es.' },
+  { q: 'Do brands pay to be featured?', q_de: 'Bezahlen Marken f\u00fcr ihre Platzierung?', a: "No. Placement isn't for sale, and it never will be \u2014 that's the only way these picks stay worth trusting.", a_de: 'Nein. Platzierungen sind nicht k\u00e4uflich und werden es nie sein \u2014 nur so bleiben die Empfehlungen vertrauensw\u00fcrdig.' },
 ];
 
 
@@ -148,9 +156,9 @@ function categoryFor(slug) {
 }
 
 function primaryBadge(product) {
-  if (product.tags.includes('editors-pick')) return { label: "Editor's Pick", type: 'editors', icon: 'award' };
-  if (product.tags.includes('new')) return { label: 'New', type: 'new', icon: null };
-  if (product.tags.includes('trending')) return { label: 'Trending', type: 'trending', icon: 'flame' };
+  if (product.tags.includes('editors-pick')) return { label: t('ribbonEditors'), type: 'editors', icon: 'award' };
+  if (product.tags.includes('new')) return { label: t('ribbonNew'), type: 'new', icon: null };
+  if (product.tags.includes('trending')) return { label: t('ribbonTrending'), type: 'trending', icon: 'flame' };
   return null;
 }
 
@@ -173,18 +181,18 @@ function productCardHTML(product) {
       <div class="product-card__media${product.image ? ' product-card__media--photo' : ''} grad-${product.gradientIndex}">
         ${badge ? `<span class="ribbon ribbon--${badge.type}">${badge.icon ? icon(badge.icon, 'icon-xs') : ''}${badge.label}</span>` : ''}
         ${product.image
-          ? `<img class="product-card__media-img" loading="lazy" src="${product.image}" alt="${product.title}">`
-          : `<span class="product-card__media-icon" role="img" aria-label="${product.title} placeholder image">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>`}
+          ? `<img class="product-card__media-img" loading="lazy" src="${product.image}" alt="${lz(product, 'title')}">`
+          : `<span class="product-card__media-icon" role="img" aria-label="${lz(product, 'title')}">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>`}
       </div>
       <div class="product-card__body">
-        <span class="eyebrow-tag">${cat ? cat.name : ''}</span>
-        <h3 class="product-card__title">${product.title}</h3>
-        <p class="product-card__desc">${product.description}</p>
+        <span class="eyebrow-tag">${cat ? lz(cat, 'name') : ''}</span>
+        <h3 class="product-card__title">${lz(product, 'title')}</h3>
+        <p class="product-card__desc">${lz(product, 'description')}</p>
       </div>
       <div class="product-card__footer">
         <span class="product-card__price">${formatPrice(product.price)}</span>
-        <a href="${amazonUrl(product)}" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="View ${product.title} on Amazon, opens in a new tab">
-          View on Amazon ${icon('externalLink', 'icon-xs')}
+        <a href="${amazonUrl(product)}" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="${t('viewOnAmazon')}: ${lz(product, 'title')}">
+          ${t('viewOnAmazon')} ${icon('externalLink', 'icon-xs')}
         </a>
       </div>
     </article>`;
@@ -192,24 +200,24 @@ function productCardHTML(product) {
 
 function editorsPickCardHTML(product) {
   const cat = categoryFor(product.category);
-  const note = EDITOR_NOTES[product.id] || product.description;
+  const note = (currentLang === 'de' && EDITOR_NOTES_DE[product.id]) || EDITOR_NOTES[product.id] || lz(product, 'description');
   return `
     <article class="product-card product-card--editorial reveal" data-category="${product.category}">
       <div class="product-card__media${product.image ? ' product-card__media--photo' : ''} grad-${product.gradientIndex}">
-        <span class="ribbon ribbon--editors">${icon('award', 'icon-xs')}Editor's Pick</span>
+        <span class="ribbon ribbon--editors">${icon('award', 'icon-xs')}${t('ribbonEditors')}</span>
         ${product.image
-          ? `<img class="product-card__media-img" loading="lazy" src="${product.image}" alt="${product.title}">`
-          : `<span class="product-card__media-icon" role="img" aria-label="${product.title} placeholder image">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>`}
+          ? `<img class="product-card__media-img" loading="lazy" src="${product.image}" alt="${lz(product, 'title')}">`
+          : `<span class="product-card__media-icon" role="img" aria-label="${lz(product, 'title')}">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>`}
       </div>
       <div class="product-card__body">
-        <span class="eyebrow-tag">${cat ? cat.name : ''}</span>
-        <h3 class="product-card__title">${product.title}</h3>
+        <span class="eyebrow-tag">${cat ? lz(cat, 'name') : ''}</span>
+        <h3 class="product-card__title">${lz(product, 'title')}</h3>
         <p class="product-card__note">\u201C${note}\u201D</p>
       </div>
       <div class="product-card__footer">
         <span class="product-card__price">${formatPrice(product.price)}</span>
-        <a href="${amazonUrl(product)}" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="View ${product.title} on Amazon, opens in a new tab">
-          View on Amazon ${icon('externalLink', 'icon-xs')}
+        <a href="${amazonUrl(product)}" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="${t('viewOnAmazon')}: ${lz(product, 'title')}">
+          ${t('viewOnAmazon')} ${icon('externalLink', 'icon-xs')}
         </a>
       </div>
     </article>`;
@@ -222,8 +230,8 @@ function mostLovedItemHTML(product, rank) {
       <span class="rank-item__number">${String(rank).padStart(2, '0')}</span>
       <span class="rank-item__icon grad-${product.gradientIndex}">${icon(cat ? cat.icon : 'lifestyle')}</span>
       <span class="rank-item__info">
-        <span class="rank-item__title">${product.title}</span>
-        <span class="rank-item__meta">${cat ? cat.name : ''}</span>
+        <span class="rank-item__title">${lz(product, 'title')}</span>
+        <span class="rank-item__meta">${cat ? lz(cat, 'name') : ''}</span>
       </span>
       <span class="rank-item__price">${formatPrice(product.price)}</span>
     </li>`;
@@ -234,8 +242,8 @@ function categoryCardHTML(cat) {
   return `
     <button type="button" class="category-card reveal" data-category="${cat.slug}">
       <span class="category-card__icon">${icon(cat.icon, 'icon-lg')}</span>
-      <span class="category-card__name">${cat.name}</span>
-      <span class="category-card__count">${count} picks</span>
+      <span class="category-card__name">${lz(cat, 'name')}</span>
+      <span class="category-card__count">${count} ${t('picks')}</span>
     </button>`;
 }
 
@@ -244,9 +252,9 @@ function collectionCardHTML(collection) {
   return `
     <a href="#browse-all" class="collection-card reveal grad-${collection.gradientIndex}">
       <span class="collection-card__icon">${icon(collection.icon, 'icon-lg')}</span>
-      <h3 class="collection-card__title">${collection.title}</h3>
-      <p class="collection-card__desc">${collection.description}</p>
-      <span class="collection-card__count">${count} picks ${icon('arrowRight', 'icon-xs')}</span>
+      <h3 class="collection-card__title">${lz(collection, 'title')}</h3>
+      <p class="collection-card__desc">${lz(collection, 'description')}</p>
+      <span class="collection-card__count">${count} ${t('picks')} ${icon('arrowRight', 'icon-xs')}</span>
     </a>`;
 }
 
@@ -254,8 +262,8 @@ function emptyStateHTML() {
   return `
     <div class="browse-empty is-visible">
       ${icon('search', 'icon-lg')}
-      <p>No products match those filters.</p>
-      <button type="button" class="btn btn--secondary" id="browse-empty-clear">Clear filters</button>
+      <p>${t('emptyTitle')}</p>
+      <button type="button" class="btn btn--secondary" id="browse-empty-clear">${t('emptyClear')}</button>
     </div>`;
 }
 
@@ -285,8 +293,8 @@ function mountHeroCollage() {
     return `
       <div class="hero-card grad-${p.gradientIndex}" style="--card-rotate:${rotate}" data-parallax-speed="${speed}">
         <span class="hero-card__icon">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>
-        <span class="hero-card__title">${p.title}</span>
-        <span class="hero-card__rating">${cat ? cat.name : ''}</span>
+        <span class="hero-card__title">${lz(p, 'title')}</span>
+        <span class="hero-card__rating">${cat ? lz(cat, 'name') : ''}</span>
       </div>`;
   }).join('');
 }
@@ -325,11 +333,11 @@ function mountFAQ() {
   el.innerHTML = FAQS.map((f, i) => `
     <div class="faq-item reveal">
       <button type="button" class="faq-question" id="faq-q-${i}" aria-expanded="false" aria-controls="faq-a-${i}">
-        <span>${f.q}</span>
+        <span>${lz(f, 'q')}</span>
         ${icon('chevronDown', 'faq-chevron')}
       </button>
       <div class="faq-answer" id="faq-a-${i}" role="region" aria-labelledby="faq-q-${i}">
-        <p>${f.a}</p>
+        <p>${lz(f, 'a')}</p>
       </div>
     </div>`).join('');
   el.querySelectorAll('.faq-item').forEach((item) => {
@@ -351,9 +359,10 @@ function mountFAQ() {
 function populateCategorySelect() {
   const select = document.getElementById('browse-category-select');
   if (!select) return;
-  select.innerHTML = ['<option value="all">All categories</option>']
-    .concat(CATEGORIES.map((c) => `<option value="${c.slug}">${c.name}</option>`))
+  select.innerHTML = [`<option value="all">${t('allCategories')}</option>`]
+    .concat(CATEGORIES.map((c) => `<option value="${c.slug}">${lz(c, 'name')}</option>`))
     .join('');
+  select.value = currentCategory;
 }
 
 
@@ -383,7 +392,10 @@ function getFilteredProducts() {
       return (
         p.title.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
-        (cat && cat.name.toLowerCase().includes(q))
+        (p.title_de || '').toLowerCase().includes(q) ||
+        (p.description_de || '').toLowerCase().includes(q) ||
+        (cat && cat.name.toLowerCase().includes(q)) ||
+        (cat && (cat.name_de || '').toLowerCase().includes(q))
       );
     });
   }
@@ -399,7 +411,7 @@ function renderBrowseAll() {
   const list = getFilteredProducts();
   const grid = document.getElementById('browse-grid');
   const count = document.getElementById('browse-count');
-  if (count) count.textContent = `${list.length} product${list.length === 1 ? '' : 's'}`;
+  if (count) count.textContent = `${list.length} ${list.length === 1 ? t('product') : t('products')}`;
   if (!grid) return;
   grid.innerHTML = list.length ? list.map(productCardHTML).join('') : emptyStateHTML();
   observeReveals(grid);
@@ -598,7 +610,7 @@ function setYearInFooter() {
    8. INIT
    --------------------------------------------------------------------- */
 
-document.addEventListener('DOMContentLoaded', () => {
+function mountAll() {
   mountHeroCollage();
   mountGrid('featured-grid', PRODUCTS.filter((p) => p.tags.includes('featured')).slice(0, 4));
   mountGrid('trending-grid', PRODUCTS.filter((p) => p.tags.includes('trending')).sort((a, b) => b.trendingScore - a.trendingScore).slice(0, 4));
@@ -610,6 +622,35 @@ document.addEventListener('DOMContentLoaded', () => {
   populateCategorySelect();
   renderBrowseAll();
   mountFAQ();
+}
+
+function setLanguage(lang) {
+  if (!LANGS.includes(lang) || lang === currentLang) return;
+  currentLang = lang;
+  document.querySelectorAll('[data-lang-switch]').forEach((btn) => {
+    btn.classList.toggle('is-active', btn.dataset.langSwitch === currentLang);
+  });
+  applyI18nStatic();
+  mountAll();
+  observeReveals(document); // freshly mounted cards need the reveal observer again
+}
+
+function initLanguage() {
+  const buttons = document.querySelectorAll('[data-lang-switch]');
+  if (!buttons.length) return;
+  buttons.forEach((btn) => {
+    btn.classList.toggle('is-active', btn.dataset.langSwitch === currentLang);
+    btn.addEventListener('click', () => setLanguage(btn.dataset.langSwitch));
+  });
+  // German browsers start in German (see i18n.js); the HTML ships English.
+  if (currentLang !== 'en') {
+    applyI18nStatic();
+    mountAll();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  mountAll();
 
   initDarkMode();
   initMobileNav();
@@ -619,6 +660,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initHeroParallax();
   setYearInFooter();
+  initLanguage();
 
   // Runs last so every mounted element above already exists in the DOM.
   initScrollReveal();

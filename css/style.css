@@ -208,6 +208,10 @@ p { color: var(--color-text-soft); }
 .btn--card:hover { background: var(--color-accent); color: #fff; border-color: var(--color-accent); }
 .btn--card .icon-xs { transition: transform var(--transition); }
 .btn--card:hover .icon-xs { transform: translate(2px, -2px); }
+.lang-btn svg { width: 21px; height: 14px; border-radius: 3px; display: block; }
+.lang-btn { opacity: 0.45; transition: opacity var(--transition), background-color var(--transition); }
+.lang-btn:hover { opacity: 1; }
+.lang-btn.is-active { opacity: 1; background: var(--color-accent-soft); }
 .btn--ghost-icon {
   display: inline-flex; align-items: center; justify-content: center;
   width: 40px; height: 40px; border-radius: var(--radius-full);

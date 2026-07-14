@@ -39,7 +39,7 @@
 <body>
   <noscript><div class="noscript-banner">Trove works best with JavaScript enabled — please turn it on to browse and search products.</div></noscript>
 
-  <a href="#main-content" class="skip-link">Skip to content</a>
+  <a href="#main-content" class="skip-link" data-i18n="skip">Skip to content</a>
 
   <!-- ============ NAVIGATION ============ -->
   <header class="nav" id="top">
@@ -59,14 +59,20 @@
       </a>
 
       <nav class="nav__links" aria-label="Primary">
-        <a href="#top">Home</a>
-        <a href="#categories">Categories</a>
-        <a href="#trending">Trending</a>
-        <a href="about.html">About</a>
-        <a href="mailto:wilson.walberg@outlook.de">Contact</a>
+        <a href="#top" data-i18n="navHome">Home</a>
+        <a href="#categories" data-i18n="navCategories">Categories</a>
+        <a href="#trending" data-i18n="navTrending">Trending</a>
+        <a href="about.html" data-i18n="navAbout">About</a>
+        <a href="mailto:wilson.walberg@outlook.de" data-i18n="navContact">Contact</a>
       </nav>
 
       <div class="nav__actions">
+        <button type="button" class="btn--ghost-icon lang-btn" data-lang-switch="en" aria-label="English" title="English">
+          <svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#012169"/><path d="M0 0 24 16M24 0 0 16" stroke="#fff" stroke-width="3"/><path d="M0 0 24 16M24 0 0 16" stroke="#C8102E" stroke-width="1.4"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="3"/></svg>
+        </button>
+        <button type="button" class="btn--ghost-icon lang-btn" data-lang-switch="de" aria-label="Deutsch" title="Deutsch">
+          <svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="5.4" y="0" fill="#000"/><rect width="24" height="5.4" y="5.3" fill="#DD0000"/><rect width="24" height="5.4" y="10.6" fill="#FFCC00"/></svg>
+        </button>
         <button type="button" class="btn--ghost-icon" data-search-open aria-label="Search products">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>
@@ -82,23 +88,23 @@
 
   <div class="nav-scrim"></div>
   <nav id="mobile-nav" aria-label="Mobile">
-    <a href="#top">Home</a>
-    <a href="#categories">Categories</a>
-    <a href="#trending">Trending</a>
-    <a href="about.html">About</a>
-    <a href="mailto:wilson.walberg@outlook.de">Contact</a>
+    <a href="#top" data-i18n="navHome">Home</a>
+    <a href="#categories" data-i18n="navCategories">Categories</a>
+    <a href="#trending" data-i18n="navTrending">Trending</a>
+    <a href="about.html" data-i18n="navAbout">About</a>
+    <a href="mailto:wilson.walberg@outlook.de" data-i18n="navContact">Contact</a>
   </nav>
 
   <div id="search-overlay">
     <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search products">
       <form id="search-overlay-form">
         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-        <input type="search" id="search-overlay-input" placeholder="Search products, categories, or problems to solve…" aria-label="Search products">
+        <input type="search" id="search-overlay-input" placeholder="Search products, categories, or problems to solve…" data-i18n-placeholder="searchPlaceholderOverlay" aria-label="Search products">
         <button type="button" data-search-close class="btn--ghost-icon" aria-label="Close search">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
         </button>
       </form>
-      <p class="search-panel__hint">Press Enter to jump to full results, or Esc to close.</p>
+      <p class="search-panel__hint" data-i18n="searchHint">Press Enter to jump to full results, or Esc to close.</p>
     </div>
   </div>
 
@@ -109,12 +115,12 @@
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="container hero__inner">
         <div class="hero__content reveal">
-          <span class="eyebrow">Curated by humans, not algorithms</span>
-          <h1 class="hero__headline">Products Worth Discovering.</h1>
-          <p class="hero__subtitle">We hand-pick useful, clever and unique products that genuinely improve everyday life.</p>
+          <span class="eyebrow" data-i18n="heroEyebrow">Curated by humans, not algorithms</span>
+          <h1 class="hero__headline" data-i18n="heroHeadline">Products Worth Discovering.</h1>
+          <p class="hero__subtitle" data-i18n="heroSubtitle">We hand-pick useful, clever and unique products that genuinely improve everyday life.</p>
           <div class="hero__actions">
-            <a href="#featured" class="btn btn--primary">Explore Products</a>
-            <a href="#faq" class="hero__secondary-link">See how we choose →</a>
+            <a href="#featured" class="btn btn--primary" data-i18n="heroCta">Explore Products</a>
+            <a href="#faq" class="hero__secondary-link" data-i18n="heroSecondary">See how we choose →</a>
           </div>
         </div>
         <div class="hero__visual reveal" id="hero-collage" aria-hidden="true">
@@ -128,11 +134,11 @@
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow">Featured</span>
-            <h2 class="section__title" id="featured-heading">Featured Products</h2>
-            <p class="section__subtitle">The picks we'd tell a friend about first.</p>
+            <span class="eyebrow" data-i18n="featuredEyebrow">Featured</span>
+            <h2 class="section__title" id="featured-heading" data-i18n="featuredTitle">Featured Products</h2>
+            <p class="section__subtitle" data-i18n="featuredSubtitle">The picks we'd tell a friend about first.</p>
           </div>
-          <a href="#browse-all" class="section__link">View all products →</a>
+          <a href="#browse-all" class="section__link" data-i18n="viewAll">View all products →</a>
         </div>
         <div class="product-grid" id="featured-grid"></div>
       </div>
@@ -143,11 +149,11 @@
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow">Right now</span>
-            <h2 class="section__title" id="trending-heading">Trending Right Now</h2>
-            <p class="section__subtitle">What's getting the most clicks and saves this week.</p>
+            <span class="eyebrow" data-i18n="trendingEyebrow">Right now</span>
+            <h2 class="section__title" id="trending-heading" data-i18n="trendingTitle">Trending Right Now</h2>
+            <p class="section__subtitle" data-i18n="trendingSubtitle">What's getting the most clicks and saves this week.</p>
           </div>
-          <a href="#browse-all" class="section__link">View all products →</a>
+          <a href="#browse-all" class="section__link" data-i18n="viewAll">View all products →</a>
         </div>
         <div class="product-grid" id="trending-grid"></div>
       </div>
@@ -158,9 +164,9 @@
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow">Ranked</span>
-            <h2 class="section__title" id="loved-heading">Most Loved This Month</h2>
-            <p class="section__subtitle">The picks we find ourselves recommending again and again.</p>
+            <span class="eyebrow" data-i18n="lovedEyebrow">Ranked</span>
+            <h2 class="section__title" id="loved-heading" data-i18n="lovedTitle">Most Loved This Month</h2>
+            <p class="section__subtitle" data-i18n="lovedSubtitle">The picks we find ourselves recommending again and again.</p>
           </div>
         </div>
         <ol class="rank-list" id="most-loved-list"></ol>
@@ -172,9 +178,9 @@
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow">Browse</span>
-            <h2 class="section__title" id="categories-heading">Shop by Category</h2>
-            <p class="section__subtitle">Twelve ways into the catalog, depending on what you're solving for.</p>
+            <span class="eyebrow" data-i18n="categoriesEyebrow">Browse</span>
+            <h2 class="section__title" id="categories-heading" data-i18n="categoriesTitle">Shop by Category</h2>
+            <p class="section__subtitle" data-i18n="categoriesSubtitle">Twelve ways into the catalog, depending on what you're solving for.</p>
           </div>
         </div>
         <div class="category-grid" id="categories-grid"></div>
@@ -186,9 +192,9 @@
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow">In our own words</span>
-            <h2 class="section__title" id="editors-heading">Editor's Picks</h2>
-            <p class="section__subtitle">Products our team uses often enough to have an opinion about.</p>
+            <span class="eyebrow" data-i18n="editorsEyebrow">In our own words</span>
+            <h2 class="section__title" id="editors-heading" data-i18n="editorsTitle">Editor's Picks</h2>
+            <p class="section__subtitle" data-i18n="editorsSubtitle">Products our team uses often enough to have an opinion about.</p>
           </div>
         </div>
         <div class="product-grid" id="editors-grid"></div>
@@ -200,9 +206,9 @@
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow">Collections</span>
-            <h2 class="section__title" id="collections-heading">Curated Collections</h2>
-            <p class="section__subtitle">Themed groups for when you're upgrading more than one thing at once.</p>
+            <span class="eyebrow" data-i18n="collectionsEyebrow">Collections</span>
+            <h2 class="section__title" id="collections-heading" data-i18n="collectionsTitle">Curated Collections</h2>
+            <p class="section__subtitle" data-i18n="collectionsSubtitle">Themed groups for when you're upgrading more than one thing at once.</p>
           </div>
         </div>
         <div class="collection-grid" id="collections-grid"></div>
@@ -214,11 +220,11 @@
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow">Just added</span>
-            <h2 class="section__title" id="new-heading">New Discoveries</h2>
-            <p class="section__subtitle">Fresh finds from the past couple of weeks.</p>
+            <span class="eyebrow" data-i18n="newEyebrow">Just added</span>
+            <h2 class="section__title" id="new-heading" data-i18n="newTitle">New Discoveries</h2>
+            <p class="section__subtitle" data-i18n="newSubtitle">Fresh finds from the past couple of weeks.</p>
           </div>
-          <a href="#browse-all" class="section__link">View all products →</a>
+          <a href="#browse-all" class="section__link" data-i18n="viewAll">View all products →</a>
         </div>
         <div class="product-grid" id="new-grid"></div>
       </div>
@@ -229,9 +235,9 @@
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow">Full catalog</span>
-            <h2 class="section__title" id="browse-heading">Browse Everything</h2>
-            <p class="section__subtitle">Search, filter by category, or sort by what matters most to you.</p>
+            <span class="eyebrow" data-i18n="browseEyebrow">Full catalog</span>
+            <h2 class="section__title" id="browse-heading" data-i18n="browseTitle">Browse Everything</h2>
+            <p class="section__subtitle" data-i18n="browseSubtitle">Search, filter by category, or sort by what matters most to you.</p>
           </div>
         </div>
 
@@ -239,7 +245,7 @@
           <label class="toolbar__search">
             <span class="sr-only">Search products</span>
             <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="search" id="browse-search-input" placeholder="Search products…">
+            <input type="search" id="browse-search-input" placeholder="Search products…" data-i18n-placeholder="searchPlaceholder">
           </label>
 
           <label class="sr-only" for="browse-category-select">Filter by category</label>
@@ -249,9 +255,9 @@
 
           <label class="sr-only" for="browse-sort-select">Sort by</label>
           <select id="browse-sort-select">
-            <option value="useful">Sort: Most Useful</option>
-            <option value="trending">Sort: Trending</option>
-            <option value="newest">Sort: Newest</option>
+            <option value="useful" data-i18n="sortUseful">Sort: Most Useful</option>
+            <option value="trending" data-i18n="sortTrending">Sort: Trending</option>
+            <option value="newest" data-i18n="sortNewest">Sort: Newest</option>
           </select>
 
           <span class="toolbar__count" id="browse-count"></span>
@@ -266,15 +272,15 @@
       <div class="container">
         <div class="newsletter reveal">
           <div class="newsletter__inner">
-            <h2>Never miss a great find.</h2>
-            <p>Get our best product discoveries in your inbox, roughly twice a month. No spam, ever.</p>
+            <h2 data-i18n="newsletterTitle">Never miss a great find.</h2>
+            <p data-i18n="newsletterText">Get our best product discoveries in your inbox, roughly twice a month. No spam, ever.</p>
             <form id="newsletter-form">
               <label class="sr-only" for="newsletter-email">Email address</label>
-              <input type="email" id="newsletter-email" placeholder="you@email.com" required>
-              <button type="submit" class="btn">Subscribe</button>
+              <input type="email" id="newsletter-email" placeholder="you@email.com" data-i18n-placeholder="newsletterPlaceholder" required>
+              <button type="submit" class="btn" data-i18n="newsletterButton">Subscribe</button>
             </form>
-            <p class="newsletter__success" id="newsletter-success" hidden>You're in — check your inbox to confirm.</p>
-            <p class="newsletter__privacy">We respect your inbox. Unsubscribe anytime.</p>
+            <p class="newsletter__success" id="newsletter-success" hidden data-i18n="newsletterSuccess">You're in — check your inbox to confirm.</p>
+            <p class="newsletter__privacy" data-i18n="newsletterPrivacy">We respect your inbox. Unsubscribe anytime.</p>
           </div>
         </div>
       </div>
@@ -285,9 +291,9 @@
       <div class="container">
         <div class="section__header" style="justify-content:center; text-align:center;">
           <div>
-            <span class="eyebrow">Questions</span>
-            <h2 class="section__title" id="faq-heading">Questions, Answered</h2>
-            <p class="section__subtitle" style="margin-inline:auto;">Everything people usually ask before their first order.</p>
+            <span class="eyebrow" data-i18n="faqEyebrow">Questions</span>
+            <h2 class="section__title" id="faq-heading" data-i18n="faqTitle">Questions, Answered</h2>
+            <p class="section__subtitle" style="margin-inline:auto;" data-i18n="faqSubtitle">Everything people usually ask before their first order.</p>
           </div>
         </div>
         <div class="faq-list" id="faq-list"></div>
@@ -314,7 +320,7 @@
             </svg>
             Trove
           </a>
-          <p>Trove is an independent product discovery guide. We spend hours researching, testing, and comparing so you don't have to.</p>
+          <p data-i18n="footerBlurb">Trove is an independent product discovery guide. We spend hours researching, testing, and comparing so you don't have to.</p>
           <div class="footer__social">
             <a href="#" aria-label="Trove on X"><svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="4" x2="20" y2="20"></line><line x1="20" y1="4" x2="4" y2="20"></line></svg></a>
             <a href="#" aria-label="Trove on Instagram"><svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"></rect><circle cx="12" cy="12" r="4.3"></circle><circle cx="17.6" cy="6.4" r="0.6" fill="currentColor"></circle></svg></a>
@@ -324,38 +330,38 @@
         </div>
 
         <div class="footer__col">
-          <h4>Explore</h4>
+          <h4 data-i18n="footerExplore">Explore</h4>
           <ul>
-            <li><a href="#categories">Categories</a></li>
-            <li><a href="#trending">Trending</a></li>
-            <li><a href="#new">New Discoveries</a></li>
-            <li><a href="#browse-all">Browse all</a></li>
+            <li><a href="#categories" data-i18n="navCategories">Categories</a></li>
+            <li><a href="#trending" data-i18n="navTrending">Trending</a></li>
+            <li><a href="#new" data-i18n="footerNew">New Discoveries</a></li>
+            <li><a href="#browse-all" data-i18n="footerBrowseAll">Browse all</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4>Company</h4>
+          <h4 data-i18n="footerCompany">Company</h4>
           <ul>
-            <li><a href="about.html">About</a></li>
-            <li><a href="mailto:wilson.walberg@outlook.de">Contact</a></li>
+            <li><a href="about.html" data-i18n="navAbout">About</a></li>
+            <li><a href="mailto:wilson.walberg@outlook.de" data-i18n="navContact">Contact</a></li>
           </ul>
         </div>
 
         <div class="footer__col">
-          <h4>Legal</h4>
+          <h4 data-i18n="footerLegal">Legal</h4>
           <ul>
-            <li><a href="#footer-disclaimer">Affiliate Disclaimer</a></li>
+            <li><a href="#footer-disclaimer" data-i18n="footerAffiliate">Affiliate Disclaimer</a></li>
             <li><a href="impressum.html">Impressum</a></li>
             <li><a href="datenschutz.html">Datenschutzerklärung</a></li>
           </ul>
         </div>
       </div>
 
-      <p class="footer__disclaimer" id="footer-disclaimer">Trove participates in the Amazon EU Associates Programme, an affiliate advertising programme designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.de. As an Amazon Associate, we earn from qualifying purchases — at no additional cost to you. We only link to products we believe are genuinely worth your time.<br><strong>Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.</strong></p>
+      <p class="footer__disclaimer" id="footer-disclaimer" data-i18n-html="footerDisclaimer">Trove participates in the Amazon EU Associates Programme, an affiliate advertising programme designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.de. As an Amazon Associate, we earn from qualifying purchases — at no additional cost to you. We only link to products we believe are genuinely worth your time.<br><strong>Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.</strong></p>
 
       <div class="footer__bottom">
-        <span>© <span id="current-year">2026</span> Trove. All rights reserved.</span>
-        <span>Independent. Unsponsored. Opinionated.</span>
+        <span>© <span id="current-year">2026</span> <span data-i18n="footerRights">Trove. All rights reserved.</span></span>
+        <span data-i18n="footerTagline">Independent. Unsponsored. Opinionated.</span>
       </div>
     </div>
   </footer>
@@ -364,6 +370,7 @@
     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="6"></line><polyline points="6 12 12 6 18 12"></polyline></svg>
   </button>
 
+  <script src="js/i18n.js"></script>
   <script src="js/script.js"></script>
 </body>
 </html>
