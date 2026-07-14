@@ -35,3 +35,4 @@ No build step needed. Either:
 - **Dark mode**: currently detects system preference on load and toggles in memory for the session (no `localStorage`, to keep it portable). To persist the choice across visits, wrap a `localStorage` read/write in `initDarkMode()` in a `try/catch`.
 - **Newsletter form**: `initNewsletter()` currently just shows a success message on submit. Point the form at your actual email provider (Mailchimp, ConvertKit, a serverless function, etc.).
 - **Fonts**: Sora, Manrope, and Inter are self-hosted as variable WOFF2 files in `fonts/` (latin subset), declared via `@font-face` at the top of `style.css` — no Google Fonts CDN dependency, GDPR-friendly.
+- **Pinterest catalog feed**: `feed/pinterest.csv` is generated from the `PRODUCTS` array — rerun `node scripts/generate-feed.js` after every product change and commit the result. Product links use the `/?product={id}` deep link handled in `initProductDeepLink()`.

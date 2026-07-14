@@ -649,6 +649,22 @@ function initLanguage() {
   }
 }
 
+/* Deep links for catalog feeds (e.g. Pinterest): /?product={id} filters
+   the browse section down to that product and scrolls to it. */
+function initProductDeepLink() {
+  const id = new URLSearchParams(window.location.search).get('product');
+  if (!id) return;
+  const product = PRODUCTS.find((p) => p.id === id);
+  if (!product) return;
+  currentSearch = lz(product, 'title');
+  currentCategory = 'all';
+  const searchInput = document.getElementById('browse-search-input');
+  if (searchInput) searchInput.value = currentSearch;
+  renderBrowseAll();
+  const section = document.getElementById('browse-all');
+  if (section) window.setTimeout(() => section.scrollIntoView({ behavior: 'auto', block: 'start' }), 100);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   mountAll();
 
@@ -661,6 +677,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroParallax();
   setYearInFooter();
   initLanguage();
+  initProductDeepLink();
 
   // Runs last so every mounted element above already exists in the DOM.
   initScrollReveal();
