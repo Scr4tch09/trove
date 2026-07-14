@@ -4,7 +4,7 @@
    Structure of this file:
      1. Icon system        – hand-drawn inline SVG icon set
      2. Data               – products, categories, collections, FAQ
-     3. Formatting helpers – stars, price, review counts
+     3. Formatting helpers – price, category lookup, badges
      4. Card templates     – HTML string builders for each card type
      5. Mount functions    – inject data-driven markup into the page
      6. Browse & filter    – search / category / sort logic
@@ -63,20 +63,6 @@ function icon(name, extraClass) {
   return `<svg class="icon${extraClass ? ' ' + extraClass : ''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${content}</svg>`;
 }
 
-const STAR_PATH = 'M12 2.7l2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.5l-5.8 3 1.1-6.4-4.7-4.6 6.5-.9z';
-
-function starsHTML(rating) {
-  const rounded = Math.round(rating);
-  let out = '<span class="stars" aria-hidden="true">';
-  for (let i = 1; i <= 5; i++) {
-    out += i <= rounded
-      ? `<svg class="star star--filled" viewBox="0 0 24 24" width="14" height="14"><path d="${STAR_PATH}" fill="currentColor"></path></svg>`
-      : `<svg class="star star--outline" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="${STAR_PATH}" stroke-linejoin="round"></path></svg>`;
-  }
-  out += '</span>';
-  return out;
-}
-
 
 /* ---------------------------------------------------------------------
    2. DATA
@@ -101,23 +87,23 @@ const CATEGORIES = [
 ];
 
 const PRODUCTS = [
-  { id: 'herb-keeper', asin: 'B01A6VUH50', title: 'Herb-Keeper Pod System', category: 'kitchen', description: 'Snap fresh herbs into water-fed pods and they stay usable for weeks, not days.', price: 34.99, rating: 4.8, reviews: 1240, tags: ['featured', 'trending'], dateAdded: '2026-06-18', trendingScore: 92, usefulScore: 95, gradientIndex: 0 },
-  { id: 'cable-strip', asin: 'B0DXDVLV4W', title: 'Magnetic Cable Organizer Strip', category: 'office', description: 'A slim magnetic rail that keeps charging cables snapped to the underside of your desk.', price: 16.99, rating: 4.7, reviews: 2103, tags: ['featured', 'editors-pick'], dateAdded: '2026-05-28', trendingScore: 75, usefulScore: 91, gradientIndex: 2 },
-  { id: 'bt-tracker', asin: 'B0GWZRRXQF', title: 'Find-Anything Bluetooth Tracker', category: 'tech', description: 'A coin-sized tag that helps you locate keys, bags, or anything else through a phone app.', price: 24.99, rating: 4.9, reviews: 5602, tags: ['trending', 'most-loved'], dateAdded: '2026-06-05', trendingScore: 98, usefulScore: 90, gradientIndex: 3 },
-  { id: 'packing-cubes', asin: 'B0BY4RWC19', title: 'Compression Packing Cubes Set', category: 'travel', description: 'Six cubes that compress clothing by a third so carry-on-only trips actually work.', price: 29.99, rating: 4.8, reviews: 3021, tags: ['featured', 'editors-pick'], dateAdded: '2026-06-22', trendingScore: 80, usefulScore: 93, gradientIndex: 4 },
-  { id: 'trunk-organizer', asin: 'B08B446GFC', title: 'Trunk Organizer with Cooler Compartment', category: 'car', description: 'Collapsible trunk storage with a built-in insulated section for groceries or drinks.', price: 44.99, rating: 4.5, reviews: 512, tags: ['new'], dateAdded: '2026-07-08', trendingScore: 55, usefulScore: 78, gradientIndex: 5 },
-  { id: 'massage-gun', asin: 'B0G1T184VK', title: 'Massage Gun Mini', category: 'fitness', description: 'Pocket-sized percussion massager with enough power for a full post-run recovery.', price: 59.99, rating: 4.7, reviews: 1899, tags: ['trending', 'featured'], dateAdded: '2026-06-10', trendingScore: 88, usefulScore: 85, gradientIndex: 0 },
-  { id: 'drawer-dividers', asin: 'B0D7YZ83PS', title: 'Stackable Drawer Dividers', category: 'organization', description: 'Adjustable dividers that click together, so one set reconfigures for any drawer.', price: 19.99, rating: 4.6, reviews: 940, tags: ['editors-pick'], dateAdded: '2026-05-20', trendingScore: 60, usefulScore: 87, gradientIndex: 1 },
-  { id: 'pry-tool', asin: 'B07RFH1M4J', title: 'Titanium Pry Bar Keychain Tool', category: 'edc', description: 'A flat titanium bar that opens boxes, scrapes labels, and still fits on a keyring.', price: 14.99, rating: 4.9, reviews: 1567, tags: ['new', 'trending'], dateAdded: '2026-07-05', trendingScore: 84, usefulScore: 82, gradientIndex: 2 },
-  { id: 'smart-bottle', asin: 'B0DR8HDCN4', title: 'Smart Hydration Water Bottle', category: 'smart-gadgets', description: "Tracks how much you drink and glows as a reminder when you're behind for the day.", price: 39.99, rating: 4.7, reviews: 2210, tags: ['featured', 'most-loved'], dateAdded: '2026-06-01', trendingScore: 76, usefulScore: 84, gradientIndex: 3 },
-  { id: 'treat-ball', asin: 'B0DHZZN2VX', title: 'Interactive Treat-Dispensing Ball', category: 'pet', description: 'Rolls unpredictably and drops kibble, turning mealtime into twenty minutes of exercise.', price: 22.99, rating: 4.8, reviews: 1755, tags: ['trending'], dateAdded: '2026-06-14', trendingScore: 79, usefulScore: 80, gradientIndex: 4 },
-  { id: 'sunrise-alarm', asin: 'B0C5M5C8NG', title: 'Sunrise Alarm Clock Light', category: 'lifestyle', description: 'Fades in like a sunrise over 30 minutes so you wake up before the alarm ever sounds.', price: 42.99, rating: 4.8, reviews: 3390, tags: ['editors-pick', 'new'], dateAdded: '2026-06-29', trendingScore: 71, usefulScore: 90, gradientIndex: 5 },
-  { id: 'jar-opener', asin: 'B09PVLGLLM', title: 'One-Handed Jar Opener', category: 'kitchen', description: "A textured lever that grips any lid size, so one twist opens jars sore hands can't.", price: 11.99, rating: 4.5, reviews: 674, tags: ['new'], dateAdded: '2026-07-01', trendingScore: 45, usefulScore: 83, gradientIndex: 0 },
-  { id: 'laptop-riser', asin: 'B0FX4LFBD8', title: 'Adjustable Laptop Riser with Hidden Storage', category: 'office', description: 'Lifts your screen to eye level and hides a cable and drive compartment underneath.', price: 32.99, rating: 4.6, reviews: 1288, tags: ['most-loved'], dateAdded: '2026-05-15', trendingScore: 58, usefulScore: 86, gradientIndex: 1 },
-  { id: 'travel-adapter', asin: 'B0C69B2KJX', title: 'Universal Travel Adapter with USB-C PD', category: 'travel', description: 'Works in 150+ countries and fast-charges a laptop through a single USB-C port.', price: 27.99, rating: 4.9, reviews: 4120, tags: ['featured', 'most-loved'], dateAdded: '2026-06-08', trendingScore: 82, usefulScore: 92, gradientIndex: 2 },
-  { id: 'passport-organizer', asin: 'B07MPP7R34', title: 'RFID-Blocking Passport Organizer', category: 'travel', description: 'Holds passports, boarding passes, and cards while blocking wireless skimming.', price: 18.99, rating: 4.4, reviews: 431, tags: ['new'], dateAdded: '2026-07-10', trendingScore: 40, usefulScore: 75, gradientIndex: 3 },
-  { id: 'rfid-wallet', asin: 'B08KS9WCCV', title: 'Slim RFID Wallet', category: 'edc', description: 'Carries eight cards in a case thinner than your phone, with a pop-up card release.', price: 28.99, rating: 4.7, reviews: 2789, tags: ['editors-pick', 'most-loved'], dateAdded: '2026-05-25', trendingScore: 68, usefulScore: 89, gradientIndex: 4 },
-  { id: 'cat-groomer', asin: 'B0949HSVBH', title: 'Cat Self-Groomer Corner Brush', category: 'pet', description: 'Mounts on any wall corner so your cat brushes itself while you do literally nothing.', price: 13.99, rating: 4.5, reviews: 903, tags: ['new', 'trending'], dateAdded: '2026-07-06', trendingScore: 63, usefulScore: 77, gradientIndex: 5 },
+  { id: 'herb-keeper', asin: 'B01A6VUH50', title: 'Herb-Keeper Pod System', category: 'kitchen', description: 'Snap fresh herbs into water-fed pods and they stay usable for weeks, not days.', price: 26.13, tags: ['featured', 'trending'], dateAdded: '2026-06-18', trendingScore: 92, usefulScore: 95, gradientIndex: 0 },
+  { id: 'cable-strip', asin: 'B0DXDVLV4W', title: 'Magnetic Cable Organizer Strip', category: 'office', description: 'A slim magnetic rail that keeps charging cables snapped to the underside of your desk.', price: 6.45, tags: ['featured', 'editors-pick'], dateAdded: '2026-05-28', trendingScore: 75, usefulScore: 91, gradientIndex: 2 },
+  { id: 'bt-tracker', asin: 'B0GWZRRXQF', title: 'Find-Anything Bluetooth Tracker', category: 'tech', description: 'A coin-sized tag that helps you locate keys, bags, or anything else through a phone app.', price: 29.98, tags: ['trending', 'most-loved'], dateAdded: '2026-06-05', trendingScore: 98, usefulScore: 90, gradientIndex: 3 },
+  { id: 'packing-cubes', asin: 'B0BY4RWC19', title: 'Compression Packing Cubes Set', category: 'travel', description: 'Six cubes that compress clothing by a third so carry-on-only trips actually work.', price: 38.24, tags: ['featured', 'editors-pick'], dateAdded: '2026-06-22', trendingScore: 80, usefulScore: 93, gradientIndex: 4 },
+  { id: 'trunk-organizer', asin: 'B08B446GFC', title: 'Trunk Organizer with Cooler Compartment', category: 'car', description: 'Collapsible trunk storage with a built-in insulated section for groceries or drinks.', price: 37.99, tags: ['new'], dateAdded: '2026-07-08', trendingScore: 55, usefulScore: 78, gradientIndex: 5 },
+  { id: 'massage-gun', asin: 'B0G1T184VK', title: 'Massage Gun Mini', category: 'fitness', description: 'Pocket-sized percussion massager with enough power for a full post-run recovery.', price: 39.99, tags: ['trending', 'featured'], dateAdded: '2026-06-10', trendingScore: 88, usefulScore: 85, gradientIndex: 0 },
+  { id: 'drawer-dividers', asin: 'B0D7YZ83PS', title: 'Stackable Drawer Dividers', category: 'organization', description: 'Adjustable dividers that click together, so one set reconfigures for any drawer.', price: 21.99, tags: ['editors-pick'], dateAdded: '2026-05-20', trendingScore: 60, usefulScore: 87, gradientIndex: 1 },
+  { id: 'pry-tool', asin: 'B07RFH1M4J', title: 'Titanium Pry Bar Keychain Tool', category: 'edc', description: 'A flat titanium bar that opens boxes, scrapes labels, and still fits on a keyring.', price: 9.75, tags: ['new', 'trending'], dateAdded: '2026-07-05', trendingScore: 84, usefulScore: 82, gradientIndex: 2 },
+  { id: 'smart-bottle', asin: 'B0DR8HDCN4', title: 'Smart Hydration Water Bottle', category: 'smart-gadgets', description: "Tracks how much you drink and glows as a reminder when you're behind for the day.", price: 49.99, tags: ['featured', 'most-loved'], dateAdded: '2026-06-01', trendingScore: 76, usefulScore: 84, gradientIndex: 3 },
+  { id: 'treat-ball', asin: 'B0DHZZN2VX', title: 'Interactive Treat-Dispensing Ball', category: 'pet', description: 'Rolls unpredictably and drops kibble, turning mealtime into twenty minutes of exercise.', price: 33.91, tags: ['trending'], dateAdded: '2026-06-14', trendingScore: 79, usefulScore: 80, gradientIndex: 4 },
+  { id: 'sunrise-alarm', asin: 'B0C5M5C8NG', title: 'Sunrise Alarm Clock Light', category: 'lifestyle', description: 'Fades in like a sunrise over 30 minutes so you wake up before the alarm ever sounds.', price: 37.99, tags: ['editors-pick', 'new'], dateAdded: '2026-06-29', trendingScore: 71, usefulScore: 90, gradientIndex: 5 },
+  { id: 'jar-opener', asin: 'B09PVLGLLM', title: 'One-Handed Jar Opener', category: 'kitchen', description: "A textured lever that grips any lid size, so one twist opens jars sore hands can't.", price: 19.99, tags: ['new'], dateAdded: '2026-07-01', trendingScore: 45, usefulScore: 83, gradientIndex: 0 },
+  { id: 'laptop-riser', asin: 'B0FX4LFBD8', title: 'Adjustable Laptop Riser with Hidden Storage', category: 'office', description: 'Lifts your screen to eye level and hides a cable and drive compartment underneath.', price: 16.14, tags: ['most-loved'], dateAdded: '2026-05-15', trendingScore: 58, usefulScore: 86, gradientIndex: 1 },
+  { id: 'travel-adapter', asin: 'B0C69B2KJX', title: 'Universal Travel Adapter with USB-C PD', category: 'travel', description: 'Works in 150+ countries and fast-charges a laptop through a single USB-C port.', price: 15.29, tags: ['featured', 'most-loved'], dateAdded: '2026-06-08', trendingScore: 82, usefulScore: 92, gradientIndex: 2 },
+  { id: 'passport-organizer', asin: 'B07MPP7R34', title: 'RFID-Blocking Passport Organizer', category: 'travel', description: 'Holds passports, boarding passes, and cards while blocking wireless skimming.', price: 9.34, tags: ['new'], dateAdded: '2026-07-10', trendingScore: 40, usefulScore: 75, gradientIndex: 3 },
+  { id: 'rfid-wallet', asin: 'B08KS9WCCV', title: 'Slim RFID Wallet', category: 'edc', description: 'Carries eight cards in a case thinner than your phone, with a pop-up card release.', price: 37.42, tags: ['editors-pick', 'most-loved'], dateAdded: '2026-05-25', trendingScore: 68, usefulScore: 89, gradientIndex: 4 },
+  { id: 'cat-groomer', asin: 'B0949HSVBH', title: 'Cat Self-Groomer Corner Brush', category: 'pet', description: 'Mounts on any wall corner so your cat brushes itself while you do literally nothing.', price: 19.99, tags: ['new', 'trending'], dateAdded: '2026-07-06', trendingScore: 63, usefulScore: 77, gradientIndex: 5 },
 ];
 
 const EDITOR_NOTES = {
@@ -150,11 +136,6 @@ const FAQS = [
 
 function formatPrice(price) {
   return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(price);
-}
-
-function formatReviews(n) {
-  if (n >= 1000) return (n / 1000).toFixed(n % 1000 === 0 ? 0 : 1) + 'k';
-  return String(n);
 }
 
 function categoryFor(slug) {
@@ -192,10 +173,6 @@ function productCardHTML(product) {
         <span class="eyebrow-tag">${cat ? cat.name : ''}</span>
         <h3 class="product-card__title">${product.title}</h3>
         <p class="product-card__desc">${product.description}</p>
-        <div class="product-card__rating">
-          ${starsHTML(product.rating)}
-          <span class="rating-text">${product.rating.toFixed(1)} <span class="rating-count">(${formatReviews(product.reviews)})</span></span>
-        </div>
       </div>
       <div class="product-card__footer">
         <span class="product-card__price">${formatPrice(product.price)}</span>
@@ -219,10 +196,6 @@ function editorsPickCardHTML(product) {
         <span class="eyebrow-tag">${cat ? cat.name : ''}</span>
         <h3 class="product-card__title">${product.title}</h3>
         <p class="product-card__note">\u201C${note}\u201D</p>
-        <div class="product-card__rating">
-          ${starsHTML(product.rating)}
-          <span class="rating-text">${product.rating.toFixed(1)}</span>
-        </div>
       </div>
       <div class="product-card__footer">
         <span class="product-card__price">${formatPrice(product.price)}</span>
@@ -241,7 +214,7 @@ function mostLovedItemHTML(product, rank) {
       <span class="rank-item__icon grad-${product.gradientIndex}">${icon(cat ? cat.icon : 'lifestyle')}</span>
       <span class="rank-item__info">
         <span class="rank-item__title">${product.title}</span>
-        <span class="rank-item__meta">${cat ? cat.name : ''} &middot; ${product.rating.toFixed(1)} rating</span>
+        <span class="rank-item__meta">${cat ? cat.name : ''}</span>
       </span>
       <span class="rank-item__price">${formatPrice(product.price)}</span>
     </li>`;
@@ -304,7 +277,7 @@ function mountHeroCollage() {
       <div class="hero-card grad-${p.gradientIndex}" style="--card-rotate:${rotate}" data-parallax-speed="${speed}">
         <span class="hero-card__icon">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>
         <span class="hero-card__title">${p.title}</span>
-        <span class="hero-card__rating">${starsHTML(p.rating)}<span>${p.rating.toFixed(1)}</span></span>
+        <span class="hero-card__rating">${cat ? cat.name : ''}</span>
       </div>`;
   }).join('');
 }
@@ -326,7 +299,7 @@ function mountCategories() {
 
 function mountMostLoved() {
   const list = PRODUCTS.filter((p) => p.tags.includes('most-loved'))
-    .sort((a, b) => b.reviews - a.reviews)
+    .sort((a, b) => b.usefulScore - a.usefulScore)
     .slice(0, 5);
   const el = document.getElementById('most-loved-list');
   if (!el) return;
@@ -386,7 +359,6 @@ let currentSort = 'useful';
 const SORT_FIELD = {
   useful: 'usefulScore',
   trending: 'trendingScore',
-  rating: 'rating',
   newest: 'dateAdded',
 };
 
