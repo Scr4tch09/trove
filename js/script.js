@@ -150,7 +150,7 @@ const FAQS = [
    --------------------------------------------------------------------- */
 
 function formatPrice(price) {
-  return '$' + price.toFixed(2);
+  return new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(price);
 }
 
 function formatReviews(n) {
@@ -167,6 +167,17 @@ function primaryBadge(product) {
   if (product.tags.includes('new')) return { label: 'New', type: 'new', icon: null };
   if (product.tags.includes('trending')) return { label: 'Trending', type: 'trending', icon: 'flame' };
   return null;
+}
+
+/* Amazon PartnerNet affiliate links.
+   Products with an `asin` field link straight to their amazon.de product
+   page; without one the button falls back to an Amazon search for the
+   product title. The tag counts toward the partner account either way. */
+const AFFILIATE_TAG = 'trovepicks-21';
+
+function amazonUrl(product) {
+  if (product.asin) return `https://www.amazon.de/dp/${product.asin}?tag=${AFFILIATE_TAG}`;
+  return `https://www.amazon.de/s?k=${encodeURIComponent(product.title)}&tag=${AFFILIATE_TAG}`;
 }
 
 function productCardHTML(product) {
@@ -189,8 +200,7 @@ function productCardHTML(product) {
       </div>
       <div class="product-card__footer">
         <span class="product-card__price">${formatPrice(product.price)}</span>
-        <a href="#" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="View ${product.title} on Amazon, opens in a new tab">
-          <!-- Replace href="#" with the real Amazon affiliate link -->
+        <a href="${amazonUrl(product)}" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="View ${product.title} on Amazon, opens in a new tab">
           View on Amazon ${icon('externalLink', 'icon-xs')}
         </a>
       </div>
@@ -217,7 +227,7 @@ function editorsPickCardHTML(product) {
       </div>
       <div class="product-card__footer">
         <span class="product-card__price">${formatPrice(product.price)}</span>
-        <a href="#" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="View ${product.title} on Amazon, opens in a new tab">
+        <a href="${amazonUrl(product)}" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="View ${product.title} on Amazon, opens in a new tab">
           View on Amazon ${icon('externalLink', 'icon-xs')}
         </a>
       </div>
