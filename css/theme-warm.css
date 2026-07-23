@@ -1,0 +1,32 @@
+/* =====================================================================
+   TrovePicks — WARM THEME (preview only)
+   Overrides the indigo/cyan accent tokens with the amber-to-red brand
+   palette from the logo. Loaded after style.css on warm-preview.html.
+   Not used by the live site.
+   ===================================================================== */
+
+:root {
+  --amber: #f59e0b;
+  --ember: #ef4444;
+
+  --color-accent: #d9480f;          /* deep warm orange — readable on white */
+  --color-accent-2: #ef4444;
+  --color-accent-soft: #fdecd8;     /* soft peach for tag/pill backgrounds */
+  --gradient-brand: linear-gradient(135deg, #f59e0b, #ef4444);
+
+  --grad-0: linear-gradient(135deg, #f59e0b, #ef4444);
+  --grad-1: linear-gradient(135deg, #fb923c, #f43f5e);
+  --grad-2: linear-gradient(135deg, #f59e0b, #f97316);
+  --grad-3: linear-gradient(135deg, #ea580c, #dc2626);
+  --grad-4: linear-gradient(135deg, #fbbf24, #f97316);
+  --grad-5: linear-gradient(135deg, #f43f5e, #ea580c);
+
+  --shadow-glow: 0 18px 40px -12px rgba(234, 88, 12, 0.38);
+}
+
+html.dark {
+  --color-accent: #fbae3c;          /* amber pops on dark */
+  --color-accent-2: #f87171;
+  --color-accent-soft: rgba(245, 158, 11, 0.16);
+  --shadow-glow: 0 18px 40px -12px rgba(245, 158, 11, 0.3);
+}
