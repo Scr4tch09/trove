@@ -29,13 +29,13 @@ const LOGO = `<svg class="logo__mark" width="30" height="30" viewBox="0 0 28 28"
 const NAV = `
   <header class="nav" id="top">
     <div class="container nav__inner">
-      <a href="/index.html" class="logo" aria-label="Trove home">${LOGO} Trove</a>
+      <a href="/index.html" class="logo" aria-label="TrovePicks home">${LOGO} TrovePicks</a>
       <nav class="nav__links" aria-label="Primary">
         <a href="/index.html" data-i18n="navHome">Home</a>
         <a href="/index.html#categories" data-i18n="navCategories">Categories</a>
         <a href="/index.html#trending" data-i18n="navTrending">Trending</a>
         <a href="/about.html" data-i18n="navAbout">About</a>
-        <a href="mailto:wilson.walberg@outlook.de" data-i18n="navContact">Contact</a>
+        <a href="mailto:info@trovepicks.de" data-i18n="navContact">Contact</a>
       </nav>
       <div class="nav__actions">
         <button type="button" class="btn--ghost-icon lang-btn" data-lang-switch="en" aria-label="English" title="English"><svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#012169"/><path d="M0 0 24 16M24 0 0 16" stroke="#fff" stroke-width="3"/><path d="M0 0 24 16M24 0 0 16" stroke="#C8102E" stroke-width="1.4"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="3"/></svg></button>
@@ -49,7 +49,7 @@ const FOOTER = `
   <footer class="footer">
     <div class="container">
       <div class="footer__bottom">
-        <span>© <span id="current-year">2026</span> <span data-i18n="footerRights">Trove. All rights reserved.</span></span>
+        <span>© <span id="current-year">2026</span> <span data-i18n="footerRights">TrovePicks. All rights reserved.</span></span>
         <span><a href="/about.html" data-i18n="navAbout">About</a> · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       </div>
       <p class="footer__disclaimer" style="margin-top:1.5rem" data-i18n="detailDisclosure">As an Amazon Associate we earn from qualifying purchases — at no extra cost to you.</p>
@@ -66,13 +66,13 @@ function pageHTML(p) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${esc(title)} — Trove</title>
+  <title>${esc(title)} — TrovePicks</title>
   <meta name="description" content="${esc(desc)}">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="${url}">
   <meta name="theme-color" content="#F59E0B">
   <meta property="og:type" content="product">
-  <meta property="og:site_name" content="Trove">
+  <meta property="og:site_name" content="TrovePicks">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(desc)}">
   <meta property="og:url" content="${url}">

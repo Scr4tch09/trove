@@ -31,7 +31,7 @@ function renderProductDetail() {
   const cat = categoryFor(product.category);
   const note = (currentLang === 'de' && EDITOR_NOTES_DE[product.id]) || EDITOR_NOTES[product.id] || '';
   const related = PRODUCTS.filter((p) => p.category === product.category && p.id !== product.id).slice(0, 3);
-  document.title = `${lz(product, 'title')} — Trove`;
+  document.title = `${lz(product, 'title')} — TrovePicks`;
 
   host.innerHTML = `
     <a class="detail__back" href="/index.html#browse-all">${t('detailBack')}</a>
