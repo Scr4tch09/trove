@@ -36,7 +36,7 @@ const rows = PRODUCTS.filter((p) => p.image).map((p) => [
   p.id,
   p.title_de || p.title,
   p.description_de || p.description,
-  `${SITE}/?product=${encodeURIComponent(p.id)}`,
+  `${SITE}/produkt/${p.id}.html`,
   p.image,
   `${p.price.toFixed(2)} EUR`,
   'in stock',

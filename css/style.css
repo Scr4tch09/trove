@@ -315,6 +315,9 @@ body.nav-open .nav-scrim { display: block; }
   box-shadow: var(--shadow-sm); transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 .product-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--color-border); }
+.product-card__link { display: flex; flex-direction: column; flex: 1; color: inherit; text-decoration: none; }
+.product-card__link:hover .product-card__title { color: var(--color-accent); }
+.product-card__title { transition: color var(--transition); }
 .product-card__media {
   position: relative; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center;
 }
@@ -494,6 +497,42 @@ html.dark .toolbar select {
 .legal .legal__placeholder { background: var(--color-accent-soft); border-radius: 4px; padding: 0.05em 0.35em; font-weight: 600; }
 .legal .legal__back { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-utility); font-size: 0.9rem; margin-bottom: 2rem; color: var(--color-text-soft); }
 .legal .legal__back:hover { color: var(--color-accent); text-decoration: none; }
+
+/* ---------- Product detail page ---------- */
+.detail { max-width: var(--container-w); margin-inline: auto; padding-block: 2.5rem var(--section-pad); }
+.detail__back { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--font-utility); font-weight: 600; font-size: 0.9rem; color: var(--color-text-soft); margin-bottom: 2rem; }
+.detail__back:hover { color: var(--color-accent); }
+.detail__grid { display: grid; gap: 2.5rem; align-items: start; }
+.detail__media { position: relative; aspect-ratio: 1 / 1; border-radius: var(--radius-lg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.detail__media--photo { background: #fff; }
+.detail__media img { width: 100%; height: 100%; object-fit: contain; padding: 2rem; }
+.detail__media-icon { color: rgba(255, 255, 255, 0.92); transform: scale(1.6); }
+.detail__info { display: flex; flex-direction: column; align-items: flex-start; }
+.detail__cat { margin-bottom: 0.8rem; }
+.detail__title { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.1; margin-bottom: 0.9rem; }
+.detail__price { font-family: var(--font-utility); font-weight: 700; font-size: 1.9rem; color: var(--color-text); margin-bottom: 1.6rem; }
+.detail__cta { font-size: 1rem; padding: 1rem 2rem; }
+.detail__disclosure { font-size: 0.8rem; line-height: 1.5; color: var(--color-text-faint); margin-top: 1.1rem; max-width: 46ch; }
+.detail__body { max-width: 68ch; margin-top: 3.5rem; }
+.detail__section { margin-bottom: 2.5rem; }
+.detail__section h2 { font-size: 1.3rem; margin-bottom: 0.7rem; }
+.detail__section p { color: var(--color-text-soft); line-height: 1.75; font-size: 1.05rem; }
+.detail__note { font-style: italic; color: var(--color-text); }
+.detail__related { margin-top: 3.5rem; }
+.detail__related h2 { font-size: 1.4rem; margin-bottom: 1.4rem; }
+.rel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.2rem; }
+.rel-card { display: flex; flex-direction: column; background: var(--color-bg-elevated); border: 1px solid var(--color-border-soft); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform var(--transition), box-shadow var(--transition); color: inherit; }
+.rel-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.rel-card__media { aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; }
+.rel-card__media--photo { background: #fff; }
+.rel-card__media img { width: 100%; height: 100%; object-fit: contain; padding: 0.8rem; }
+.rel-card__icon { color: rgba(255, 255, 255, 0.92); }
+.rel-card__title { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; padding: 0.9rem 1rem 0.2rem; }
+.rel-card__price { font-family: var(--font-utility); font-weight: 700; font-size: 0.95rem; color: var(--color-accent); padding: 0 1rem 1rem; }
+@media (min-width: 768px) {
+  .detail__grid { grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+  .detail__info { position: sticky; top: 6rem; }
+}
 
 /* ---------- Responsive ---------- */
 @media (min-width: 640px) {

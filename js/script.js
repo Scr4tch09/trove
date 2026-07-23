@@ -178,17 +178,19 @@ function productCardHTML(product) {
   const badge = primaryBadge(product);
   return `
     <article class="product-card reveal" data-category="${product.category}">
-      <div class="product-card__media${product.image ? ' product-card__media--photo' : ''} grad-${product.gradientIndex}">
-        ${badge ? `<span class="ribbon ribbon--${badge.type}">${badge.icon ? icon(badge.icon, 'icon-xs') : ''}${badge.label}</span>` : ''}
-        ${product.image
-          ? `<img class="product-card__media-img" loading="lazy" src="${product.image}" alt="${lz(product, 'title')}">`
-          : `<span class="product-card__media-icon" role="img" aria-label="${lz(product, 'title')}">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>`}
-      </div>
-      <div class="product-card__body">
-        <span class="eyebrow-tag">${cat ? lz(cat, 'name') : ''}</span>
-        <h3 class="product-card__title">${lz(product, 'title')}</h3>
-        <p class="product-card__desc">${lz(product, 'description')}</p>
-      </div>
+      <a class="product-card__link" href="/produkt/${product.id}.html" aria-label="${lz(product, 'title')} — ${t('viewDetails')}">
+        <div class="product-card__media${product.image ? ' product-card__media--photo' : ''} grad-${product.gradientIndex}">
+          ${badge ? `<span class="ribbon ribbon--${badge.type}">${badge.icon ? icon(badge.icon, 'icon-xs') : ''}${badge.label}</span>` : ''}
+          ${product.image
+            ? `<img class="product-card__media-img" loading="lazy" src="${product.image}" alt="${lz(product, 'title')}">`
+            : `<span class="product-card__media-icon" role="img" aria-label="${lz(product, 'title')}">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>`}
+        </div>
+        <div class="product-card__body">
+          <span class="eyebrow-tag">${cat ? lz(cat, 'name') : ''}</span>
+          <h3 class="product-card__title">${lz(product, 'title')}</h3>
+          <p class="product-card__desc">${lz(product, 'description')}</p>
+        </div>
+      </a>
       <div class="product-card__footer">
         <span class="product-card__price">${formatPrice(product.price)}</span>
         <a href="${amazonUrl(product)}" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="${t('viewOnAmazon')}: ${lz(product, 'title')}">
@@ -203,17 +205,19 @@ function editorsPickCardHTML(product) {
   const note = (currentLang === 'de' && EDITOR_NOTES_DE[product.id]) || EDITOR_NOTES[product.id] || lz(product, 'description');
   return `
     <article class="product-card product-card--editorial reveal" data-category="${product.category}">
-      <div class="product-card__media${product.image ? ' product-card__media--photo' : ''} grad-${product.gradientIndex}">
-        <span class="ribbon ribbon--editors">${icon('award', 'icon-xs')}${t('ribbonEditors')}</span>
-        ${product.image
-          ? `<img class="product-card__media-img" loading="lazy" src="${product.image}" alt="${lz(product, 'title')}">`
-          : `<span class="product-card__media-icon" role="img" aria-label="${lz(product, 'title')}">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>`}
-      </div>
-      <div class="product-card__body">
-        <span class="eyebrow-tag">${cat ? lz(cat, 'name') : ''}</span>
-        <h3 class="product-card__title">${lz(product, 'title')}</h3>
-        <p class="product-card__note">\u201C${note}\u201D</p>
-      </div>
+      <a class="product-card__link" href="/produkt/${product.id}.html" aria-label="${lz(product, 'title')} \u2014 ${t('viewDetails')}">
+        <div class="product-card__media${product.image ? ' product-card__media--photo' : ''} grad-${product.gradientIndex}">
+          <span class="ribbon ribbon--editors">${icon('award', 'icon-xs')}${t('ribbonEditors')}</span>
+          ${product.image
+            ? `<img class="product-card__media-img" loading="lazy" src="${product.image}" alt="${lz(product, 'title')}">`
+            : `<span class="product-card__media-icon" role="img" aria-label="${lz(product, 'title')}">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>`}
+        </div>
+        <div class="product-card__body">
+          <span class="eyebrow-tag">${cat ? lz(cat, 'name') : ''}</span>
+          <h3 class="product-card__title">${lz(product, 'title')}</h3>
+          <p class="product-card__note">\u201C${note}\u201D</p>
+        </div>
+      </a>
       <div class="product-card__footer">
         <span class="product-card__price">${formatPrice(product.price)}</span>
         <a href="${amazonUrl(product)}" class="btn btn--card" rel="nofollow sponsored noopener" target="_blank" aria-label="${t('viewOnAmazon')}: ${lz(product, 'title')}">
@@ -633,6 +637,7 @@ function setLanguage(lang) {
   applyI18nStatic();
   mountAll();
   observeReveals(document); // freshly mounted cards need the reveal observer again
+  if (typeof window.onLanguageChange === 'function') window.onLanguageChange();
 }
 
 function initLanguage() {
