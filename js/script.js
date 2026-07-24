@@ -638,6 +638,7 @@ function setLanguage(lang) {
   mountAll();
   observeReveals(document); // freshly mounted cards need the reveal observer again
   if (typeof window.onLanguageChange === 'function') window.onLanguageChange();
+  document.dispatchEvent(new CustomEvent('trove:langchange', { detail: { lang: currentLang } }));
 }
 
 function initLanguage() {

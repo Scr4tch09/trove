@@ -103,4 +103,13 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+
+  // Keep the banner / reopen button in sync when the site language switches.
+  document.addEventListener('trove:langchange', function (e) {
+    lang = (e.detail && e.detail.lang) || lang;
+    t = T[lang] || T.de;
+    if (document.getElementById('cookie-banner')) { removeBanner(); showBanner(); }
+    var ro = document.getElementById('cookie-reopen');
+    if (ro) { ro.textContent = t.settings; ro.setAttribute('aria-label', t.settings); }
+  });
 })();
