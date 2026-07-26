@@ -534,6 +534,10 @@ function initSearchOverlay() {
   }
 }
 
+// Brevo (sibforms) subscription endpoint — public, safe to expose. Brevo
+// handles storage and the double opt-in confirmation email.
+const NEWSLETTER_ENDPOINT = 'https://de4be401.sibforms.com/serve/MUIFANMhn79qoKEiFIffHhThQr7kPprqlnj2hVaGCf9D0FdQ3W6pbRLBGfObuq8isy3BswwOZB0uwt5ULp_nXwPWdkYB3xR4xNTsTUjvCyjD3KanAtGzeqWAMcmpjHdP4wUeoafZ57mq6YdXvIx_3PiwBqu-ayn51X6RtXuw5p8neIE-DnJ_00nZyNbAOI2lRu0Jtw6NxWhRTa0FRw==';
+
 function initNewsletter() {
   const form = document.getElementById('newsletter-form');
   if (!form) return;
@@ -541,10 +545,25 @@ function initNewsletter() {
     e.preventDefault();
     const input = form.querySelector('input[type="email"]');
     const success = document.getElementById('newsletter-success');
-    if (input && input.value) {
+    if (!input || !input.value || !input.checkValidity()) { if (input) input.reportValidity(); return; }
+    const btn = form.querySelector('button[type="submit"]');
+    if (btn) btn.disabled = true;
+    // Brevo expects EMAIL, an empty honeypot, and a locale for the opt-in mail.
+    const body = new URLSearchParams();
+    body.set('EMAIL', input.value);
+    body.set('email_address_check', '');
+    body.set('locale', currentLang === 'de' ? 'de' : 'en');
+    // no-cors: the response is opaque, but the double opt-in email is the
+    // real confirmation, so we optimistically show the success state.
+    fetch(NEWSLETTER_ENDPOINT, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: body.toString(),
+    }).catch(() => {}).then(() => {
       form.hidden = true;
       if (success) success.hidden = false;
-    }
+    });
   });
 }
 
