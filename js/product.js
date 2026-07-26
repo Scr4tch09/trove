@@ -49,6 +49,9 @@ function renderProductDetail() {
           <a href="${amazonUrl(product)}" class="btn btn--primary detail__cta" rel="nofollow sponsored noopener" target="_blank">
             ${t('viewOnAmazon')} ${icon('externalLink', 'icon-xs')}
           </a>
+          <button type="button" class="btn btn--secondary detail__fav${isFavorite(product.id) ? ' is-active' : ''}">
+            ${icon('heart', 'icon-xs')}<span class="detail__fav-label">${isFavorite(product.id) ? t('favSaved') : t('favSave')}</span>
+          </button>
           <button type="button" class="btn btn--secondary detail__share">
             ${icon('share', 'icon-xs')}<span class="detail__share-label">${t('share')}</span>
           </button>
@@ -74,6 +77,17 @@ function renderProductDetail() {
       <h2>${t('detailRelated')}</h2>
       <div class="rel-grid">${related.map(relatedCardHTML).join('')}</div>
     </section>` : ''}`;
+
+  const favBtn = host.querySelector('.detail__fav');
+  if (favBtn) {
+    favBtn.addEventListener('click', () => {
+      const now = toggleFavorite(product.id);
+      favBtn.classList.toggle('is-active', now);
+      const label = favBtn.querySelector('.detail__fav-label');
+      if (label) label.textContent = now ? t('favSaved') : t('favSave');
+      updateFavCount();
+    });
+  }
 
   const shareBtn = host.querySelector('.detail__share');
   if (shareBtn) {

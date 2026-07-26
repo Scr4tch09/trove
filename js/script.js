@@ -36,6 +36,7 @@ const ICONS = {
   externalLink: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>',
   mail: '<rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect><path d="m3 7 9 6 9-6"></path>',
   share: '<circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line>',
+  heart: '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>',
   check: '<polyline points="20 6 9 17 4 12"></polyline>',
   filter: '<polygon points="4 4 20 4 14 12 14 19 10 21 10 12 4 4"></polygon>',
   flame: '<path d="M12 2.5c1.2 3 -1.8 4.3 -1.8 7.3a2.8 2.8 0 0 0 5.6 0c0-1.6-.6-2.4-.6-2.4s1.8.9 1.8 4.3a4.9 4.9 0 0 1-9.8 0c0-5.1 3.4-6.3 4.8-9.2z"></path>',
@@ -174,11 +175,68 @@ function amazonUrl(product) {
   return `https://www.amazon.de/s?k=${encodeURIComponent(product.title)}&tag=${AFFILIATE_TAG}`;
 }
 
+/* ---------------------------------------------------------------------
+   FAVORITES (Merkliste) — kept in localStorage, no account needed.
+   --------------------------------------------------------------------- */
+const FAV_KEY = 'tp-favorites';
+
+function getFavorites() {
+  try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch (e) { return []; }
+}
+function saveFavorites(ids) {
+  try { localStorage.setItem(FAV_KEY, JSON.stringify(ids)); } catch (e) {}
+}
+function isFavorite(id) { return getFavorites().indexOf(id) !== -1; }
+function toggleFavorite(id) {
+  const ids = getFavorites();
+  const i = ids.indexOf(id);
+  if (i === -1) ids.push(id); else ids.splice(i, 1);
+  saveFavorites(ids);
+  return i === -1; // true = now favorited
+}
+function favBtnHTML(id) {
+  const active = isFavorite(id);
+  return `<button type="button" class="fav-btn${active ? ' is-active' : ''}" data-fav="${id}" aria-pressed="${active}" aria-label="${t('favSave')}">${icon('heart')}</button>`;
+}
+function updateFavCount() {
+  const n = getFavorites().length;
+  document.querySelectorAll('.nav-fav__count').forEach((el) => { el.textContent = n; el.hidden = n === 0; });
+}
+function initFavorites() {
+  updateFavCount();
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.fav-btn');
+    if (!btn) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const nowFav = toggleFavorite(btn.dataset.fav);
+    btn.classList.toggle('is-active', nowFav);
+    btn.setAttribute('aria-pressed', String(nowFav));
+    updateFavCount();
+    if (document.getElementById('merkliste-grid')) renderMerkliste();
+  });
+}
+function renderMerkliste() {
+  const grid = document.getElementById('merkliste-grid');
+  if (!grid) return;
+  const empty = document.getElementById('merkliste-empty');
+  const list = PRODUCTS.filter((p) => isFavorite(p.id));
+  if (!list.length) {
+    grid.innerHTML = '';
+    if (empty) empty.hidden = false;
+    return;
+  }
+  if (empty) empty.hidden = true;
+  grid.innerHTML = list.map(productCardHTML).join('');
+  observeReveals(grid);
+}
+
 function productCardHTML(product) {
   const cat = categoryFor(product.category);
   const badge = primaryBadge(product);
   return `
     <article class="product-card reveal" data-category="${product.category}">
+      ${favBtnHTML(product.id)}
       <a class="product-card__link" href="/produkt/${product.id}.html" aria-label="${lz(product, 'title')} — ${t('viewDetails')}">
         <div class="product-card__media${product.image ? ' product-card__media--photo' : ''} grad-${product.gradientIndex}">
           ${badge ? `<span class="ribbon ribbon--${badge.type}">${badge.icon ? icon(badge.icon, 'icon-xs') : ''}${badge.label}</span>` : ''}
@@ -206,6 +264,7 @@ function editorsPickCardHTML(product) {
   const note = (currentLang === 'de' && EDITOR_NOTES_DE[product.id]) || EDITOR_NOTES[product.id] || lz(product, 'description');
   return `
     <article class="product-card product-card--editorial reveal" data-category="${product.category}">
+      ${favBtnHTML(product.id)}
       <a class="product-card__link" href="/produkt/${product.id}.html" aria-label="${lz(product, 'title')} \u2014 ${t('viewDetails')}">
         <div class="product-card__media${product.image ? ' product-card__media--photo' : ''} grad-${product.gradientIndex}">
           <span class="ribbon ribbon--editors">${icon('award', 'icon-xs')}${t('ribbonEditors')}</span>
@@ -747,6 +806,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initLanguage();
   initProductDeepLink();
   initSearchQuery();
+  initFavorites();
+  renderMerkliste();
 
   // Runs last so every mounted element above already exists in the DOM.
   initScrollReveal();
