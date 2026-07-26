@@ -442,6 +442,7 @@ html.dark .toolbar select {
 #newsletter-form button { background: #fff; color: #d9480f; flex-shrink: 0; }
 #newsletter-form button:hover { background: #fff; color: #b83a0b; }
 .newsletter__success { display: flex; align-items: center; justify-content: center; gap: 0.6rem; font-weight: 600; background: rgba(255, 255, 255, 0.16); border-radius: var(--radius-full); padding: 0.85rem; }
+.newsletter__success[hidden] { display: none; }
 .newsletter__privacy { font-size: 0.78rem; margin-top: 1rem; color: rgba(255, 255, 255, 0.7); }
 .newsletter__privacy a { color: #fff; text-decoration: underline; }
 
