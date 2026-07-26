@@ -45,9 +45,14 @@ function renderProductDetail() {
         <a class="eyebrow-tag detail__cat" href="/index.html#categories">${cat ? lz(cat, 'name') : ''}</a>
         <h1 class="detail__title">${lz(product, 'title')}</h1>
         <p class="detail__price">${formatPrice(product.price)}</p>
-        <a href="${amazonUrl(product)}" class="btn btn--primary detail__cta" rel="nofollow sponsored noopener" target="_blank">
-          ${t('viewOnAmazon')} ${icon('externalLink', 'icon-xs')}
-        </a>
+        <div class="detail__actions">
+          <a href="${amazonUrl(product)}" class="btn btn--primary detail__cta" rel="nofollow sponsored noopener" target="_blank">
+            ${t('viewOnAmazon')} ${icon('externalLink', 'icon-xs')}
+          </a>
+          <button type="button" class="btn btn--secondary detail__share">
+            ${icon('share', 'icon-xs')}<span class="detail__share-label">${t('share')}</span>
+          </button>
+        </div>
         <p class="detail__disclosure">${t('detailDisclosure')}</p>
       </div>
     </div>
@@ -69,6 +74,36 @@ function renderProductDetail() {
       <h2>${t('detailRelated')}</h2>
       <div class="rel-grid">${related.map(relatedCardHTML).join('')}</div>
     </section>` : ''}`;
+
+  const shareBtn = host.querySelector('.detail__share');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', async () => {
+      const data = { title: lz(product, 'title') + ' — TrovePicks', url: location.href };
+      if (navigator.share) {
+        try { await navigator.share(data); } catch (e) {}
+        return;
+      }
+      // Desktop fallback: copy the link (modern API, then a legacy method).
+      let ok = false;
+      try { await navigator.clipboard.writeText(location.href); ok = true; } catch (e) {}
+      if (!ok) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = location.href;
+          ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.focus(); ta.select();
+          ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+        } catch (e) {}
+      }
+      const label = shareBtn.querySelector('.detail__share-label');
+      if (label) {
+        const orig = label.textContent;
+        label.textContent = t('shareCopied');
+        setTimeout(() => { label.textContent = orig; }, 2000);
+      }
+    });
+  }
 }
 
 window.onLanguageChange = renderProductDetail;

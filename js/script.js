@@ -35,6 +35,7 @@ const ICONS = {
   arrowRight: '<line x1="4" y1="12" x2="20" y2="12"></line><polyline points="14 6 20 12 14 18"></polyline>',
   externalLink: '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>',
   mail: '<rect x="2.5" y="4.5" width="19" height="15" rx="2"></rect><path d="m3 7 9 6 9-6"></path>',
+  share: '<circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"></line><line x1="15.4" y1="6.5" x2="8.6" y2="10.5"></line>',
   check: '<polyline points="20 6 9 17 4 12"></polyline>',
   filter: '<polygon points="4 4 20 4 14 12 14 19 10 21 10 12 4 4"></polygon>',
   flame: '<path d="M12 2.5c1.2 3 -1.8 4.3 -1.8 7.3a2.8 2.8 0 0 0 5.6 0c0-1.6-.6-2.4-.6-2.4s1.8.9 1.8 4.3a4.9 4.9 0 0 1-9.8 0c0-5.1 3.4-6.3 4.8-9.2z"></path>',
@@ -498,13 +499,31 @@ function initMobileNav() {
   panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
 }
 
+// Builds the search overlay so pages that only carry the search button
+// (product/about/legal) still get a working overlay.
+function buildSearchOverlay() {
+  const el = document.createElement('div');
+  el.id = 'search-overlay';
+  el.innerHTML = `
+    <div class="search-panel" role="dialog" aria-modal="true" aria-label="Search products">
+      <form id="search-overlay-form">
+        ${icon('search')}
+        <input type="search" id="search-overlay-input" placeholder="${t('searchPlaceholderOverlay')}" data-i18n-placeholder="searchPlaceholderOverlay" aria-label="Search products">
+        <button type="button" data-search-close class="btn--ghost-icon" aria-label="Close search">${icon('close')}</button>
+      </form>
+      <p class="search-panel__hint" data-i18n="searchHint">${t('searchHint')}</p>
+    </div>`;
+  document.body.appendChild(el);
+  return el;
+}
+
 function initSearchOverlay() {
   const openBtn = document.querySelector('[data-search-open]');
-  const overlay = document.getElementById('search-overlay');
-  const closeBtn = document.querySelector('[data-search-close]');
-  const input = document.getElementById('search-overlay-input');
-  const form = document.getElementById('search-overlay-form');
-  if (!openBtn || !overlay) return;
+  if (!openBtn) return;
+  const overlay = document.getElementById('search-overlay') || buildSearchOverlay();
+  const input = overlay.querySelector('#search-overlay-input');
+  const form = overlay.querySelector('#search-overlay-form');
+  const closeBtn = overlay.querySelector('[data-search-close]');
 
   const open = () => {
     overlay.classList.add('is-open');
@@ -524,14 +543,38 @@ function initSearchOverlay() {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      currentSearch = input ? input.value : '';
-      const mainSearch = document.getElementById('browse-search-input');
-      if (mainSearch) mainSearch.value = currentSearch;
-      renderBrowseAll();
-      close();
-      scrollToEl(document.getElementById('browse-all'));
+      const q = input ? input.value.trim() : '';
+      const grid = document.getElementById('browse-grid');
+      if (grid) {
+        // Homepage: filter the catalog in place.
+        currentSearch = q;
+        currentCategory = 'all';
+        const mainSearch = document.getElementById('browse-search-input');
+        if (mainSearch) mainSearch.value = q;
+        renderBrowseAll();
+        close();
+        scrollToEl(document.getElementById('browse-all'));
+      } else {
+        // Other pages: hand the query to the homepage catalog.
+        window.location.href = '/index.html?q=' + encodeURIComponent(q) + '#browse-all';
+      }
     });
   }
+}
+
+// Homepage only: apply a ?q= query passed in from another page's search.
+function initSearchQuery() {
+  const grid = document.getElementById('browse-grid');
+  if (!grid) return;
+  const q = new URLSearchParams(window.location.search).get('q');
+  if (!q) return;
+  currentSearch = q;
+  currentCategory = 'all';
+  const input = document.getElementById('browse-search-input');
+  if (input) input.value = q;
+  renderBrowseAll();
+  const section = document.getElementById('browse-all');
+  if (section) window.setTimeout(() => section.scrollIntoView({ behavior: 'auto', block: 'start' }), 100);
 }
 
 // Brevo (sibforms) subscription endpoint — public, safe to expose. Brevo
@@ -703,6 +746,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setYearInFooter();
   initLanguage();
   initProductDeepLink();
+  initSearchQuery();
 
   // Runs last so every mounted element above already exists in the DOM.
   initScrollReveal();
