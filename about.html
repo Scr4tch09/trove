@@ -56,12 +56,22 @@
       </nav>
 
       <div class="nav__actions">
-        <button type="button" class="btn--ghost-icon lang-btn" data-lang-switch="en" aria-label="English" title="English">
-          <svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#012169"/><path d="M0 0 24 16M24 0 0 16" stroke="#fff" stroke-width="3"/><path d="M0 0 24 16M24 0 0 16" stroke="#C8102E" stroke-width="1.4"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="3"/></svg>
-        </button>
-        <button type="button" class="btn--ghost-icon lang-btn" data-lang-switch="de" aria-label="Deutsch" title="Deutsch">
-          <svg viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="5.4" y="0" fill="#000"/><rect width="24" height="5.4" y="5.3" fill="#DD0000"/><rect width="24" height="5.4" y="10.6" fill="#FFCC00"/></svg>
-        </button>
+        <div class="lang-select">
+          <button type="button" class="btn--ghost-icon lang-toggle" data-lang-toggle aria-haspopup="listbox" aria-expanded="false" aria-label="Sprache wählen / Choose language" title="Sprache / Language">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><line x1="3" y1="12" x2="21" y2="12"></line><ellipse cx="12" cy="12" rx="4" ry="9"></ellipse></svg>
+            <span class="lang-toggle__code" data-lang-code>DE</span>
+          </button>
+          <div class="lang-menu" data-lang-menu hidden role="listbox">
+            <button type="button" class="lang-option" data-lang-switch="de" role="option">
+              <svg class="lang-flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="5.4" y="0" fill="#000"/><rect width="24" height="5.4" y="5.3" fill="#DD0000"/><rect width="24" height="5.4" y="10.6" fill="#FFCC00"/></svg>
+              Deutsch
+            </button>
+            <button type="button" class="lang-option" data-lang-switch="en" role="option">
+              <svg class="lang-flag" viewBox="0 0 24 16" aria-hidden="true"><rect width="24" height="16" fill="#012169"/><path d="M0 0 24 16M24 0 0 16" stroke="#fff" stroke-width="3"/><path d="M0 0 24 16M24 0 0 16" stroke="#C8102E" stroke-width="1.4"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="5"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="3"/></svg>
+              English
+            </button>
+          </div>
+        </div>
         <button type="button" class="btn--ghost-icon" data-search-open aria-label="Search products">
           <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </button>

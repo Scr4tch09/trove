@@ -776,6 +776,32 @@ function initLanguage() {
   }
 }
 
+// Language dropdown (globe button + menu). The options keep data-lang-switch,
+// so initLanguage's handlers still drive setLanguage; this only opens/closes
+// the menu and keeps the shown language code in sync.
+function initLangMenu() {
+  const toggle = document.querySelector('[data-lang-toggle]');
+  const menu = document.querySelector('[data-lang-menu]');
+  if (!toggle || !menu) return;
+  const codeEl = document.querySelector('[data-lang-code]');
+  const sync = () => {
+    if (codeEl) codeEl.textContent = currentLang.toUpperCase();
+    menu.querySelectorAll('.lang-option').forEach((o) => o.classList.toggle('is-active', o.dataset.langSwitch === currentLang));
+  };
+  const closeMenu = () => { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); };
+  sync();
+  toggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const willOpen = menu.hidden;
+    menu.hidden = !willOpen;
+    toggle.setAttribute('aria-expanded', String(willOpen));
+  });
+  menu.querySelectorAll('.lang-option').forEach((o) => o.addEventListener('click', closeMenu));
+  document.addEventListener('click', (e) => { if (!menu.hidden && !e.target.closest('.lang-select')) closeMenu(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+  document.addEventListener('trove:langchange', sync);
+}
+
 /* Deep links for catalog feeds (e.g. Pinterest): /?product={id} filters
    the browse section down to that product and scrolls to it. */
 function initProductDeepLink() {
@@ -804,6 +830,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroParallax();
   setYearInFooter();
   initLanguage();
+  initLangMenu();
   initProductDeepLink();
   initSearchQuery();
   initFavorites();
