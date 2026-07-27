@@ -556,6 +556,13 @@ function initMobileNav() {
   };
   toggle.addEventListener('click', () => setOpen(!panel.classList.contains('is-open')));
   panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setOpen(false)));
+  const closeBtn = panel.querySelector('[data-nav-close]');
+  if (closeBtn) closeBtn.addEventListener('click', () => setOpen(false));
+  const scrim = document.querySelector('.nav-scrim');
+  if (scrim) scrim.addEventListener('click', () => setOpen(false));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && panel.classList.contains('is-open')) setOpen(false);
+  });
 }
 
 // Builds the search overlay so pages that only carry the search button

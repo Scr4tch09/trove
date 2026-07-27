@@ -275,6 +275,14 @@ p { color: var(--color-text-soft); }
 }
 #mobile-nav.is-open { display: flex; transform: translateX(0); }
 #mobile-nav a { font-family: var(--font-display); font-size: 1.35rem; font-weight: 600; }
+.mobile-nav__close {
+  position: absolute; top: 1.1rem; right: 1.1rem; width: 44px; height: 44px;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--color-text); border-radius: var(--radius-md); background: none;
+  transition: background var(--transition);
+}
+.mobile-nav__close:hover { background: var(--color-bg-soft); }
+.mobile-nav__close .icon { width: 24px; height: 24px; }
 body.nav-open { overflow: hidden; }
 .nav-scrim {
   display: none; position: fixed; inset: 0; background: rgba(10, 10, 20, 0.4); z-index: 140;
