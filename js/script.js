@@ -583,6 +583,42 @@ function buildSearchOverlay() {
   return el;
 }
 
+// Live search: match products by title/description/category in both languages,
+// best (most useful) first.
+function searchProducts(q) {
+  q = q.trim().toLowerCase();
+  if (!q) return [];
+  const list = PRODUCTS.filter((p) => {
+    const cat = categoryFor(p.category);
+    return (
+      p.title.toLowerCase().includes(q) ||
+      p.description.toLowerCase().includes(q) ||
+      (p.title_de || '').toLowerCase().includes(q) ||
+      (p.description_de || '').toLowerCase().includes(q) ||
+      (cat && cat.name.toLowerCase().includes(q)) ||
+      (cat && (cat.name_de || '').toLowerCase().includes(q))
+    );
+  });
+  return list.sort((a, b) => b.usefulScore - a.usefulScore);
+}
+
+function searchResultHTML(p) {
+  const cat = categoryFor(p.category);
+  return `
+    <a class="search-result" href="/produkt/${p.id}.html">
+      <span class="search-result__media grad-${p.gradientIndex}">
+        ${p.image
+          ? `<img src="${p.image}" alt="" loading="lazy">`
+          : icon(cat ? cat.icon : 'lifestyle')}
+      </span>
+      <span class="search-result__text">
+        <span class="search-result__title">${lz(p, 'title')}</span>
+        <span class="search-result__cat">${cat ? lz(cat, 'name') : ''}</span>
+      </span>
+      <span class="search-result__price">${formatPrice(p.price)}</span>
+    </a>`;
+}
+
 function initSearchOverlay() {
   const openBtn = document.querySelector('[data-search-open]');
   if (!openBtn) return;
@@ -590,10 +626,57 @@ function initSearchOverlay() {
   const input = overlay.querySelector('#search-overlay-input');
   const form = overlay.querySelector('#search-overlay-form');
   const closeBtn = overlay.querySelector('[data-search-close]');
+  const hint = overlay.querySelector('.search-panel__hint');
+
+  // Results container (injected once) — lives between the input and the hint.
+  let results = overlay.querySelector('#search-results');
+  if (!results && form) {
+    results = document.createElement('div');
+    results.id = 'search-results';
+    results.className = 'search-results';
+    results.hidden = true;
+    form.insertAdjacentElement('afterend', results);
+  }
+
+  const renderResults = () => {
+    if (!results) return;
+    const q = input ? input.value : '';
+    if (!q.trim()) {
+      results.hidden = true;
+      results.innerHTML = '';
+      if (hint) hint.hidden = false;
+      return;
+    }
+    const matches = searchProducts(q);
+    if (hint) hint.hidden = true;
+    results.hidden = false;
+    if (!matches.length) {
+      results.innerHTML = `<p class="search-results__empty">${t('searchNoResults')}</p>`;
+      return;
+    }
+    const shown = matches.slice(0, 6);
+    results.innerHTML =
+      shown.map(searchResultHTML).join('') +
+      (matches.length > shown.length
+        ? `<button type="button" class="search-results__more" data-search-submit>${t('searchSeeAll')} (${matches.length})</button>`
+        : '');
+  };
+
+  if (input) input.addEventListener('input', renderResults);
+  if (results) {
+    results.addEventListener('click', (e) => {
+      const more = e.target.closest('[data-search-submit]');
+      if (more) { e.preventDefault(); if (form) form.requestSubmit(); }
+    });
+  }
+  document.addEventListener('trove:langchange', () => {
+    if (overlay.classList.contains('is-open')) renderResults();
+  });
 
   const open = () => {
     overlay.classList.add('is-open');
     document.body.classList.add('nav-open');
+    renderResults();
     window.setTimeout(() => input && input.focus(), 150);
   };
   const close = () => {
