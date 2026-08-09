@@ -735,7 +735,7 @@ function initSearchOverlay() {
         scrollToEl(document.getElementById('browse-all'));
       } else {
         // Other pages: hand the query to the catalogue page.
-        window.location.href = '/kategorien.html?q=' + encodeURIComponent(q) + '#browse-all';
+        window.location.href = '/katalog.html?q=' + encodeURIComponent(q) + '#browse-all';
       }
     });
   }
