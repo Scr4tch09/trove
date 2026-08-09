@@ -70,7 +70,7 @@ const FOOTER = `
         <span><a href="/about.html" data-i18n="navAbout">About</a> · <a href="/impressum.html">Impressum</a> · <a href="/datenschutz.html">Datenschutz</a></span>
       </div>
       <p class="footer__disclaimer" style="margin-top:1.5rem" data-i18n="detailDisclosure">As an Amazon Associate we earn from qualifying purchases — at no extra cost to you.</p>
-      <p class="footer__disclaimer" data-i18n="priceNotice">Prices last updated July 14, 2026.</p>
+      <p class="footer__disclaimer" data-i18n="priceNotice">Product prices and availability were last updated on August 9, 2026 and may have changed since — the price shown on Amazon at the time of purchase applies.</p>
     </div>
   </footer>`;
 
