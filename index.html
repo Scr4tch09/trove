@@ -80,8 +80,7 @@
 
       <nav class="nav__links" aria-label="Primary">
         <a href="#top" data-i18n="navHome">Home</a>
-        <a href="#categories" data-i18n="navCategories">Categories</a>
-        <a href="#trending" data-i18n="navTrending">Trending</a>
+        <a href="kategorien.html" data-i18n="navCategories">Categories</a>
         <a href="about.html" data-i18n="navAbout">About</a>
         <a href="mailto:info@trovepicks.de" data-i18n="navContact">Contact</a>
       </nav>
@@ -126,8 +125,7 @@
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg>
     </button>
     <a href="#top" data-i18n="navHome">Home</a>
-    <a href="#categories" data-i18n="navCategories">Categories</a>
-    <a href="#trending" data-i18n="navTrending">Trending</a>
+    <a href="kategorien.html" data-i18n="navCategories">Categories</a>
     <a href="about.html" data-i18n="navAbout">About</a>
     <a href="mailto:info@trovepicks.de" data-i18n="navContact">Contact</a>
   </nav>
@@ -156,7 +154,7 @@
           <h1 class="hero__headline" data-i18n="heroHeadline">Products Worth Discovering.</h1>
           <p class="hero__subtitle" data-i18n="heroSubtitle">We hand-pick useful, clever and unique products that genuinely improve everyday life.</p>
           <div class="hero__actions">
-            <a href="#featured" class="btn btn--primary" data-i18n="heroCta">Explore Products</a>
+            <a href="kategorien.html" class="btn btn--primary" data-i18n="heroCta">Explore Products</a>
             <a href="#faq" class="hero__secondary-link" data-i18n="heroSecondary">See how we choose →</a>
           </div>
         </div>
@@ -177,39 +175,42 @@
             <h2 class="section__title" id="deals-heading" data-i18n="dealsTitle">Price Drops</h2>
             <p class="section__subtitle" data-i18n="dealsSubtitle">Picks that got cheaper on Amazon since our last price check.</p>
           </div>
-          <a href="#browse-all" class="section__link" data-i18n="viewAll">View all products →</a>
+          <a href="kategorien.html" class="section__link" data-i18n="viewAll">View all products →</a>
         </div>
         <div class="product-grid" id="deals-grid"></div>
       </div>
     </section>
 
-    <!-- ============ FEATURED PRODUCTS ============ -->
-    <section class="section" id="featured" aria-labelledby="featured-heading">
+    <!-- ============ EDITOR'S PICKS ============ -->
+    <!-- Absorbed the former "Featured" section: everything that was featured
+         is now an Editor's Pick, so the page leads with one list of things we
+         actually vouch for instead of two overlapping ones. -->
+    <section class="section" id="editors" aria-labelledby="editors-heading">
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow" data-i18n="featuredEyebrow">Featured</span>
-            <h2 class="section__title" id="featured-heading" data-i18n="featuredTitle">Featured Products</h2>
-            <p class="section__subtitle" data-i18n="featuredSubtitle">The picks we'd tell a friend about first.</p>
+            <span class="eyebrow" data-i18n="editorsEyebrow">In our own words</span>
+            <h2 class="section__title" id="editors-heading" data-i18n="editorsTitle">Editor's Picks</h2>
+            <p class="section__subtitle" data-i18n="editorsSubtitle">Products our team uses often enough to have an opinion about.</p>
           </div>
-          <a href="#browse-all" class="section__link" data-i18n="viewAll">View all products →</a>
+          <a href="kategorien.html" class="section__link" data-i18n="viewAll">View all products →</a>
         </div>
-        <div class="product-grid" id="featured-grid"></div>
+        <div class="product-grid" id="editors-grid"></div>
       </div>
     </section>
 
-    <!-- ============ TRENDING RIGHT NOW ============ -->
-    <section class="section section--soft" id="trending" aria-labelledby="trending-heading">
+    <!-- ============ NEW DISCOVERIES ============ -->
+    <section class="section section--soft" id="new" aria-labelledby="new-heading">
       <div class="container">
         <div class="section__header">
           <div>
-            <span class="eyebrow" data-i18n="trendingEyebrow">Right now</span>
-            <h2 class="section__title" id="trending-heading" data-i18n="trendingTitle">Trending Right Now</h2>
-            <p class="section__subtitle" data-i18n="trendingSubtitle">What's getting the most clicks and saves this week.</p>
+            <span class="eyebrow" data-i18n="newEyebrow">Just added</span>
+            <h2 class="section__title" id="new-heading" data-i18n="newTitle">New Discoveries</h2>
+            <p class="section__subtitle" data-i18n="newSubtitle">Fresh finds from the past couple of weeks.</p>
           </div>
-          <a href="#browse-all" class="section__link" data-i18n="viewAll">View all products →</a>
+          <a href="kategorien.html" class="section__link" data-i18n="viewAll">View all products →</a>
         </div>
-        <div class="product-grid" id="trending-grid"></div>
+        <div class="product-grid" id="new-grid"></div>
       </div>
     </section>
 
@@ -227,34 +228,6 @@
       </div>
     </section>
 
-    <!-- ============ CATEGORIES ============ -->
-    <section class="section section--soft" id="categories" aria-labelledby="categories-heading">
-      <div class="container">
-        <div class="section__header">
-          <div>
-            <span class="eyebrow" data-i18n="categoriesEyebrow">Browse</span>
-            <h2 class="section__title" id="categories-heading" data-i18n="categoriesTitle">Shop by Category</h2>
-            <p class="section__subtitle" data-i18n="categoriesSubtitle">Twelve ways into the catalog, depending on what you're solving for.</p>
-          </div>
-        </div>
-        <div class="category-grid" id="categories-grid"></div>
-      </div>
-    </section>
-
-    <!-- ============ EDITOR'S PICKS ============ -->
-    <section class="section" aria-labelledby="editors-heading">
-      <div class="container">
-        <div class="section__header">
-          <div>
-            <span class="eyebrow" data-i18n="editorsEyebrow">In our own words</span>
-            <h2 class="section__title" id="editors-heading" data-i18n="editorsTitle">Editor's Picks</h2>
-            <p class="section__subtitle" data-i18n="editorsSubtitle">Products our team uses often enough to have an opinion about.</p>
-          </div>
-        </div>
-        <div class="product-grid" id="editors-grid"></div>
-      </div>
-    </section>
-
     <!-- ============ CURATED COLLECTIONS ============ -->
     <section class="section section--soft" aria-labelledby="collections-heading">
       <div class="container">
@@ -269,60 +242,25 @@
       </div>
     </section>
 
-    <!-- ============ NEW DISCOVERIES ============ -->
-    <section class="section" id="new" aria-labelledby="new-heading">
+    <!-- ============ FAQ ============ -->
+    <!-- Swapped with the newsletter: the FAQ answers what people ask before
+         a first order, so it earns the earlier slot; the signup closes the
+         page. -->
+    <section class="section" id="faq" aria-labelledby="faq-heading">
       <div class="container">
-        <div class="section__header">
+        <div class="section__header" style="justify-content:center; text-align:center;">
           <div>
-            <span class="eyebrow" data-i18n="newEyebrow">Just added</span>
-            <h2 class="section__title" id="new-heading" data-i18n="newTitle">New Discoveries</h2>
-            <p class="section__subtitle" data-i18n="newSubtitle">Fresh finds from the past couple of weeks.</p>
-          </div>
-          <a href="#browse-all" class="section__link" data-i18n="viewAll">View all products →</a>
-        </div>
-        <div class="product-grid" id="new-grid"></div>
-      </div>
-    </section>
-
-    <!-- ============ BROWSE ALL / SEARCH & FILTER ============ -->
-    <section class="section section--soft" id="browse-all" aria-labelledby="browse-heading">
-      <div class="container">
-        <div class="section__header">
-          <div>
-            <span class="eyebrow" data-i18n="browseEyebrow">Full catalog</span>
-            <h2 class="section__title" id="browse-heading" data-i18n="browseTitle">Browse Everything</h2>
-            <p class="section__subtitle" data-i18n="browseSubtitle">Search, filter by category, or sort by what matters most to you.</p>
+            <span class="eyebrow" data-i18n="faqEyebrow">Questions</span>
+            <h2 class="section__title" id="faq-heading" data-i18n="faqTitle">Questions, Answered</h2>
+            <p class="section__subtitle" style="margin-inline:auto;" data-i18n="faqSubtitle">Everything people usually ask before their first order.</p>
           </div>
         </div>
-
-        <div class="toolbar">
-          <label class="toolbar__search">
-            <span class="sr-only">Search products</span>
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="search" id="browse-search-input" placeholder="Search products…" data-i18n-placeholder="searchPlaceholder">
-          </label>
-
-          <label class="sr-only" for="browse-category-select">Filter by category</label>
-          <select id="browse-category-select">
-            <option value="all">All categories</option>
-          </select>
-
-          <label class="sr-only" for="browse-sort-select">Sort by</label>
-          <select id="browse-sort-select">
-            <option value="useful" data-i18n="sortUseful">Sort: Most Useful</option>
-            <option value="trending" data-i18n="sortTrending">Sort: Trending</option>
-            <option value="newest" data-i18n="sortNewest">Sort: Newest</option>
-          </select>
-
-          <span class="toolbar__count" id="browse-count"></span>
-        </div>
-
-        <div class="product-grid" id="browse-grid"></div>
+        <div class="faq-list" id="faq-list"></div>
       </div>
     </section>
 
     <!-- ============ NEWSLETTER ============ -->
-    <section class="section">
+    <section class="section section--soft">
       <div class="container">
         <div class="newsletter reveal">
           <div class="newsletter__inner">
@@ -337,20 +275,6 @@
             <p class="newsletter__privacy" data-i18n-html="newsletterPrivacy">Unsubscribe anytime. By subscribing you agree to our <a href="datenschutz.html">Privacy Policy</a>.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- ============ FAQ ============ -->
-    <section class="section section--soft" id="faq" aria-labelledby="faq-heading">
-      <div class="container">
-        <div class="section__header" style="justify-content:center; text-align:center;">
-          <div>
-            <span class="eyebrow" data-i18n="faqEyebrow">Questions</span>
-            <h2 class="section__title" id="faq-heading" data-i18n="faqTitle">Questions, Answered</h2>
-            <p class="section__subtitle" style="margin-inline:auto;" data-i18n="faqSubtitle">Everything people usually ask before their first order.</p>
-          </div>
-        </div>
-        <div class="faq-list" id="faq-list"></div>
       </div>
     </section>
 
@@ -386,10 +310,9 @@
         <div class="footer__col">
           <h4 data-i18n="footerExplore">Explore</h4>
           <ul>
-            <li><a href="#categories" data-i18n="navCategories">Categories</a></li>
-            <li><a href="#trending" data-i18n="navTrending">Trending</a></li>
+            <li><a href="kategorien.html" data-i18n="navCategories">Categories</a></li>
             <li><a href="#new" data-i18n="footerNew">New Discoveries</a></li>
-            <li><a href="#browse-all" data-i18n="footerBrowseAll">Browse all</a></li>
+            <li><a href="kategorien.html" data-i18n="footerBrowseAll">Browse all</a></li>
           </ul>
         </div>
 

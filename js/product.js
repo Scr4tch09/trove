@@ -34,7 +34,7 @@ function renderProductDetail() {
   document.title = `${lz(product, 'title')} — TrovePicks`;
 
   host.innerHTML = `
-    <a class="detail__back" href="/index.html#browse-all">${t('detailBack')}</a>
+    <a class="detail__back" href="/kategorien.html">${t('detailBack')}</a>
     <div class="detail__grid">
       <div class="detail__media${product.image ? ' detail__media--photo' : ''} grad-${product.gradientIndex}">
         ${product.image
@@ -42,7 +42,7 @@ function renderProductDetail() {
           : `<span class="detail__media-icon">${icon(cat ? cat.icon : 'lifestyle', 'icon-lg')}</span>`}
       </div>
       <div class="detail__info">
-        <a class="eyebrow-tag detail__cat" href="/index.html#categories">${cat ? lz(cat, 'name') : ''}</a>
+        <a class="eyebrow-tag detail__cat" href="/kategorien.html">${cat ? lz(cat, 'name') : ''}</a>
         <h1 class="detail__title">${lz(product, 'title')}</h1>
         <p class="detail__price">${formatPrice(product.price)}${(() => {
           const deal = dealInfo(product);
