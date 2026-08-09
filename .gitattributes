@@ -1,0 +1,14 @@
+# Normalise line endings. The repo stores LF and every platform checks out LF.
+# Without this, Windows checked out CRLF while the generator scripts write LF,
+# so `git status` listed all 34 product pages as modified after every run of
+# generate-products.js even though the content was byte-identical.
+* text=auto eol=lf
+
+# Binary assets — never convert these.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.woff2 binary
+*.pdf  binary
