@@ -1,7 +1,7 @@
 /* =====================================================================
    TROVE — i18n
    ---------------------------------------------------------------------
-   UI strings per language. Product, category, collection and FAQ texts
+   UI strings per language. Product, category and FAQ texts
    live next to their English source in script.js as *_de fields — this
    file only holds the interface chrome plus the helpers t() and lz().
    Initial language: German browsers get German, everyone else English.
@@ -13,7 +13,7 @@ const I18N = {
   en: {
     pageTitle: 'TrovePicks — Products Worth Discovering',
     skip: 'Skip to content',
-    navHome: 'Home', navCategories: 'Categories', navAbout: 'About', navContact: 'Contact',
+    navHome: 'Home', navCategories: 'Catalog', navAbout: 'About', navContact: 'Contact',
     searchPlaceholderOverlay: 'Search products, categories, or problems to solve…',
     searchHint: 'Start typing to see matches, or press Esc to close.',
     searchNoResults: 'No products match your search.',
@@ -28,7 +28,6 @@ const I18N = {
     lovedEyebrow: 'Ranked', lovedTitle: 'Most Loved This Month', lovedSubtitle: 'The picks we find ourselves recommending again and again.',
     categoriesTitle: 'Shop by Category',
     editorsEyebrow: 'In our own words', editorsTitle: "Editor's Picks", editorsSubtitle: 'Products our team uses often enough to have an opinion about.',
-    collectionsEyebrow: 'Collections', collectionsTitle: 'Curated Collections', collectionsSubtitle: "Themed groups for when you're upgrading more than one thing at once.",
     newEyebrow: 'Just added', newTitle: 'New Discoveries', newSubtitle: 'Fresh finds from the past couple of weeks.',
     browseEyebrow: 'Full catalog', browseTitle: 'Browse Everything', browseSubtitle: 'Search, filter by category, or sort by what matters most to you.',
     searchPlaceholder: 'Search products…',
@@ -44,7 +43,7 @@ const I18N = {
     faqEyebrow: 'Questions', faqTitle: 'Questions, Answered', faqSubtitle: 'Everything people usually ask before their first order.',
     footerBlurb: "TrovePicks is an independent product discovery guide. We spend hours researching, testing, and comparing so you don't have to.",
     footerExplore: 'Explore', footerCompany: 'Company', footerLegal: 'Legal',
-    footerNew: 'New Discoveries', footerBrowseAll: 'Browse all', footerAffiliate: 'Affiliate Disclaimer',
+    footerNew: 'New Discoveries', footerAffiliate: 'Affiliate Disclaimer',
     footerDisclaimer: 'TrovePicks participates in the Amazon EU Associates Programme, an affiliate advertising programme designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.de. As an Amazon Associate, we earn from qualifying purchases — at no additional cost to you. We only link to products we believe are genuinely worth your time.<br><strong>Als Amazon-Partner verdienen wir an qualifizierten Verkäufen.</strong>',
     footerRights: 'TrovePicks. All rights reserved.',
     footerTagline: 'Independent. Unsponsored. Opinionated.',
@@ -84,7 +83,7 @@ const I18N = {
   de: {
     pageTitle: 'TrovePicks — Produkte, die es zu entdecken lohnt',
     skip: 'Zum Inhalt springen',
-    navHome: 'Start', navCategories: 'Kategorien', navAbout: 'Über uns', navContact: 'Kontakt',
+    navHome: 'Start', navCategories: 'Katalog', navAbout: 'Über uns', navContact: 'Kontakt',
     searchPlaceholderOverlay: 'Produkte, Kategorien oder Probleme suchen …',
     searchHint: 'Tippen für passende Treffer, Esc schließt.',
     searchNoResults: 'Keine Produkte passen zu deiner Suche.',
@@ -99,7 +98,6 @@ const I18N = {
     lovedEyebrow: 'Rangliste', lovedTitle: 'Die Lieblinge des Monats', lovedSubtitle: 'Die Picks, die wir immer wieder empfehlen.',
     categoriesTitle: 'Nach Kategorie shoppen',
     editorsEyebrow: 'In unseren eigenen Worten', editorsTitle: 'Redaktions-Favoriten', editorsSubtitle: 'Produkte, die wir oft genug nutzen, um eine Meinung zu haben.',
-    collectionsEyebrow: 'Kollektionen', collectionsTitle: 'Kuratierte Kollektionen', collectionsSubtitle: 'Themenpakete für alle, die gleich mehrere Dinge upgraden.',
     newEyebrow: 'Gerade neu', newTitle: 'Neu entdeckt', newSubtitle: 'Frische Funde der letzten Wochen.',
     browseEyebrow: 'Ganzer Katalog', browseTitle: 'Alles durchstöbern', browseSubtitle: 'Suche, filtere nach Kategorie oder sortiere nach dem, was dir wichtig ist.',
     searchPlaceholder: 'Produkte suchen …',
@@ -115,7 +113,7 @@ const I18N = {
     faqEyebrow: 'Fragen', faqTitle: 'Fragen & Antworten', faqSubtitle: 'Alles, was vor der ersten Bestellung gefragt wird.',
     footerBlurb: 'TrovePicks ist ein unabhängiger Produkt-Guide. Wir recherchieren, testen und vergleichen stundenlang — damit du es nicht musst.',
     footerExplore: 'Entdecken', footerCompany: 'Unternehmen', footerLegal: 'Rechtliches',
-    footerNew: 'Neu entdeckt', footerBrowseAll: 'Alles durchstöbern', footerAffiliate: 'Affiliate-Hinweis',
+    footerNew: 'Neu entdeckt', footerAffiliate: 'Affiliate-Hinweis',
     footerDisclaimer: 'TrovePicks nimmt am Amazon EU-Partnerprogramm teil, einem Affiliate-Programm, über das Websites durch Werbung und Verlinkung zu Amazon.de Werbekostenerstattungen verdienen können. <strong>Als Amazon-Partner verdienen wir an qualifizierten Verkäufen</strong> — ohne Mehrkosten für dich. Wir verlinken nur Produkte, die uns wirklich überzeugt haben.',
     footerRights: 'TrovePicks. Alle Rechte vorbehalten.',
     footerTagline: 'Unabhängig. Ungesponsert. Mit Meinung.',

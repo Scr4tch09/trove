@@ -32,7 +32,7 @@ const NAV = `
       <a href="/index.html" class="logo" aria-label="TrovePicks home">${LOGO} TrovePicks</a>
       <nav class="nav__links" aria-label="Primary">
         <a href="/index.html" data-i18n="navHome">Home</a>
-        <a href="/kategorien.html" data-i18n="navCategories">Categories</a>
+        <a href="/kategorien.html" data-i18n="navCategories">Catalog</a>
         <a href="/about.html" data-i18n="navAbout">About</a>
         <a href="mailto:info@trovepicks.de" data-i18n="navContact">Contact</a>
       </nav>
@@ -55,7 +55,7 @@ const NAV = `
   <nav id="mobile-nav" aria-label="Mobile">
     <button type="button" class="mobile-nav__close" data-nav-close aria-label="Menü schließen / Close menu"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"></line><line x1="18" y1="6" x2="6" y2="18"></line></svg></button>
     <a href="/index.html" data-i18n="navHome">Home</a>
-    <a href="/kategorien.html" data-i18n="navCategories">Categories</a>
+    <a href="/kategorien.html" data-i18n="navCategories">Catalog</a>
     <a href="/about.html" data-i18n="navAbout">About</a>
     <a href="mailto:info@trovepicks.de" data-i18n="navContact">Contact</a>
   </nav>`;

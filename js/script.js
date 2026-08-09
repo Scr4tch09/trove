@@ -3,7 +3,7 @@
    ---------------------------------------------------------------------
    Structure of this file:
      1. Icon system        – hand-drawn inline SVG icon set
-     2. Data               – products, categories, collections, FAQ
+     2. Data               – products, categories, FAQ
      3. Formatting helpers – price, category lookup, badges
      4. Card templates     – HTML string builders for each card type
      5. Mount functions    – inject data-driven markup into the page
@@ -142,11 +142,12 @@ const EDITOR_NOTES_DE = {
   'rfid-wallet': 'Halb so dick wie ein normales Portemonnaie, ohne jeden Kompromiss.',
 };
 
-const COLLECTIONS = [
-  { id: 'desk-upgrade', title: 'The Desk Upgrade', title_de: 'Das Schreibtisch-Upgrade', description: 'Small changes that make an 8-hour workday feel shorter.', description_de: 'Kleine Veränderungen, die einen 8-Stunden-Tag kürzer anfühlen lassen.', categories: ['office', 'tech'], icon: 'office', gradientIndex: 2 },
-  { id: 'travel-ready', title: 'Ready to Travel', title_de: 'Bereit zum Reisen', description: 'Everything that earns its place in a carry-on.', description_de: 'Alles, was sich seinen Platz im Handgepäck verdient.', categories: ['travel'], icon: 'travel', gradientIndex: 4 },
-  { id: 'smart-home', title: 'Smart Home, Simplified', title_de: 'Smart Home, einfach gemacht', description: 'Small upgrades with an outsized effect on daily life.', description_de: 'Kleine Upgrades mit großer Wirkung auf den Alltag.', categories: ['smart-gadgets', 'home'], icon: 'smartGadgets', gradientIndex: 0 },
-];
+/* Curated Collections were removed on 2026-08-09. They only linked through
+   to the unfiltered catalogue, which the category tiles already do better.
+   The idea is parked, not dropped: the plan is hand-picked, blog-style
+   round-ups ("4 Gadgets für deinen Schreibtisch") listing specific products
+   with commentary. Restore the old data/markup from commit e71479e^ if that
+   turns out to be a useful starting point. */
 
 const FAQS = [
   { q: 'How do you choose which products to feature?', q_de: 'Wie w\u00e4hlt ihr die Produkte aus?', a: 'Every product is used or researched before it\u2019s listed. We look for things that solve a real, specific problem \u2014 not just items with good marketing.', a_de: 'Jedes Produkt wird vor der Aufnahme genutzt oder gr\u00fcndlich recherchiert. Wir suchen Dinge, die ein echtes, konkretes Problem l\u00f6sen \u2014 nicht nur Produkte mit gutem Marketing.' },
@@ -355,17 +356,6 @@ function categoryCardHTML(cat) {
     </button>`;
 }
 
-function collectionCardHTML(collection) {
-  const count = PRODUCTS.filter((p) => collection.categories.includes(p.category)).length;
-  return `
-    <a href="/kategorien.html" class="collection-card reveal grad-${collection.gradientIndex}">
-      <span class="collection-card__icon">${icon(collection.icon, 'icon-lg')}</span>
-      <h3 class="collection-card__title">${lz(collection, 'title')}</h3>
-      <p class="collection-card__desc">${lz(collection, 'description')}</p>
-      <span class="collection-card__count">${count} ${t('picks')} ${icon('arrowRight', 'icon-xs')}</span>
-    </a>`;
-}
-
 function emptyStateHTML() {
   return `
     <div class="browse-empty is-visible">
@@ -429,10 +419,6 @@ function mountMostLoved() {
   const el = document.getElementById('most-loved-list');
   if (!el) return;
   el.innerHTML = list.map((p, i) => mostLovedItemHTML(p, i + 1)).join('');
-}
-
-function mountCollections() {
-  mountGrid('collections-grid', COLLECTIONS, collectionCardHTML);
 }
 
 function mountFAQ() {
@@ -888,7 +874,6 @@ function mountAll() {
   mountGrid('editors-grid', PRODUCTS.filter((p) => p.tags.includes('editors-pick')).slice(0, 8), editorsPickCardHTML);
   mountGrid('new-grid', PRODUCTS.filter((p) => p.tags.includes('new')).sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded)).slice(0, 4));
   mountMostLoved();
-  mountCollections();
   mountCategories();
   populateCategorySelect();
   renderBrowseAll();
