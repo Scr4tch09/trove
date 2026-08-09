@@ -44,7 +44,12 @@ function renderProductDetail() {
       <div class="detail__info">
         <a class="eyebrow-tag detail__cat" href="/index.html#categories">${cat ? lz(cat, 'name') : ''}</a>
         <h1 class="detail__title">${lz(product, 'title')}</h1>
-        <p class="detail__price">${formatPrice(product.price)}</p>
+        <p class="detail__price">${formatPrice(product.price)}${(() => {
+          const deal = dealInfo(product);
+          return deal
+            ? `<span class="detail__deal"><s class="price-was">${t('dealWas')} ${formatPrice(deal.prevPrice)}</s><span class="detail__deal-pct">−${deal.percent} %</span></span>`
+            : '';
+        })()}</p>
         <div class="detail__actions">
           <a href="${amazonUrl(product)}" class="btn btn--primary detail__cta" rel="nofollow sponsored noopener" target="_blank">
             ${t('viewOnAmazon')} ${icon('externalLink', 'icon-xs')}

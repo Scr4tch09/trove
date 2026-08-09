@@ -166,6 +166,23 @@
       </div>
     </section>
 
+    <!-- ============ ANGEBOTE / PRICE DROPS ============ -->
+    <!-- Filled and shown/hidden by mountDeals() — stays hidden while no
+         product qualifies, so the page never shows an empty deals rail. -->
+    <section class="section section--deals" id="deals" aria-labelledby="deals-heading" hidden>
+      <div class="container">
+        <div class="section__header">
+          <div>
+            <span class="eyebrow" data-i18n="dealsEyebrow">Deals</span>
+            <h2 class="section__title" id="deals-heading" data-i18n="dealsTitle">Price Drops</h2>
+            <p class="section__subtitle" data-i18n="dealsSubtitle">Picks that got cheaper on Amazon since our last price check.</p>
+          </div>
+          <a href="#browse-all" class="section__link" data-i18n="viewAll">View all products →</a>
+        </div>
+        <div class="product-grid" id="deals-grid"></div>
+      </div>
+    </section>
+
     <!-- ============ FEATURED PRODUCTS ============ -->
     <section class="section" id="featured" aria-labelledby="featured-heading">
       <div class="container">

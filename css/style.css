@@ -424,7 +424,10 @@ body.nav-open .nav-scrim { display: block; }
 .product-card__note { font-style: italic; color: var(--color-text); }
 .product-card__rating { display: flex; align-items: center; }
 .product-card__footer { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 1.1rem 1.4rem 1.4rem; }
-.product-card__price { font-family: var(--font-utility); font-weight: 700; font-size: 1.1rem; }
+.product-card__price {
+  font-family: var(--font-utility); font-weight: 700; font-size: 1.1rem;
+  display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1.25;
+}
 .product-card__footer .btn--card { width: auto; flex: 1; }
 
 .ribbon {
@@ -436,6 +439,27 @@ body.nav-open .nav-scrim { display: block; }
 .ribbon--editors { color: #be123c; }
 .ribbon--trending { color: #ea580c; }
 .ribbon--new { color: #059669; }
+/* Deals carry the brand gradient rather than a tint — a price drop is the
+   loudest thing a card can say, and it has to beat the other ribbons. */
+.ribbon--deal { background: var(--gradient-brand); color: #fff; }
+
+/* Angebote section. Explicit [hidden] rule so it stays collapsed even if
+   .section ever gains a display value (that has bitten this stylesheet
+   before with .newsletter__success and .nav-fav__count). */
+.section--deals { background: var(--color-bg-soft); }
+.section--deals[hidden] { display: none; }
+.detail__deal { display: inline-flex; align-items: center; gap: 0.6rem; margin-left: 0.8rem; vertical-align: middle; }
+.detail__deal-pct {
+  background: var(--gradient-brand); color: #fff; font-family: var(--font-utility);
+  font-size: 0.78rem; font-weight: 700; padding: 0.2rem 0.55rem; border-radius: var(--radius-full);
+}
+.detail__deal .price-was { display: inline; margin: 0; font-size: 0.92rem; }
+/* Stacked under the current price on purpose: side by side it wrapped on its
+   own once the price got long, which left the footer ragged. */
+.price-was {
+  display: block; margin-top: 1px; font-size: 0.78rem; font-weight: 600;
+  color: var(--color-text-faint); text-decoration-thickness: 1px;
+}
 
 .product-card--editorial { border-color: var(--color-accent-soft); }
 

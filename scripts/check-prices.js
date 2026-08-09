@@ -56,6 +56,32 @@ function priceFrom(html) {
   return null;
 }
 
+/* Keeps the Angebote section fed. `prevPrice` is the price this product fell
+   FROM — always one we actually observed, never an invented list price — and
+   `priceDropAt` dates the fall so script.js can expire it after 30 days.
+   On a second drop inside that window we keep the earlier, higher reference
+   so the discount reflects the whole fall instead of just the last step. */
+const DEAL_MAX_AGE_DAYS = 30;
+
+function dealFields(p, now) {
+  const refIsFresh = p.priceDropAt &&
+    (Date.now() - new Date(p.priceDropAt).getTime()) / 86400000 <= DEAL_MAX_AGE_DAYS;
+
+  if (now < p.price) {
+    const carry = refIsFresh && p.prevPrice > p.price ? p.prevPrice : p.price;
+    return { prevPrice: carry, priceDropAt: today() };
+  }
+  // Price went up: the deal only survives while it stays under the reference.
+  if (refIsFresh && p.prevPrice && now < p.prevPrice) {
+    return { prevPrice: p.prevPrice, priceDropAt: p.priceDropAt };
+  }
+  return { prevPrice: null, priceDropAt: null };
+}
+
+function today() {
+  return new Date().toISOString().slice(0, 10);
+}
+
 const drift = [];
 const problems = [];
 const unchanged = [];
@@ -85,7 +111,7 @@ for (const p of PRODUCTS) {
     problems.push(`${p.id}: kein Preis gefunden`);
     continue;
   }
-  if (Math.abs(now - p.price) > 0.005) drift.push({ id: p.id, old: p.price, now });
+  if (Math.abs(now - p.price) > 0.005) drift.push({ id: p.id, old: p.price, now, ...dealFields(p, now) });
   else unchanged.push(p.id);
 }
 
@@ -94,7 +120,14 @@ console.log(`Unverändert: ${unchanged.length}`);
 console.log(`Preisänderungen: ${drift.length}`);
 for (const d of drift) {
   const diff = d.now - d.old;
-  console.log(`  ${d.id.padEnd(22)} ${d.old.toFixed(2).padStart(8)} -> ${d.now.toFixed(2).padStart(8)}  (${diff > 0 ? '+' : ''}${diff.toFixed(2)})`);
+  let tag = '';
+  if (d.prevPrice) {
+    const pct = Math.round(((d.prevPrice - d.now) / d.prevPrice) * 100);
+    tag = pct >= 5 && d.prevPrice - d.now >= 1 ? `  ANGEBOT -${pct}% (vorher ${d.prevPrice.toFixed(2)})` : '';
+  } else if (diff > 0) {
+    tag = '  Angebot endet';
+  }
+  console.log(`  ${d.id.padEnd(22)} ${d.old.toFixed(2).padStart(8)} -> ${d.now.toFixed(2).padStart(8)}  (${diff > 0 ? '+' : ''}${diff.toFixed(2)})${tag}`);
 }
 if (problems.length) {
   console.log(`\nProbleme: ${problems.length}`);
@@ -106,7 +139,13 @@ if (write && drift.length) {
   for (const d of drift) {
     for (let i = 0; i < lines.length; i++) {
       if (lines[i].includes(`{ id: '${d.id}', asin:`)) {
-        lines[i] = lines[i].replace(/price: [\d.]+,/, `price: ${d.now.toFixed(2)},`);
+        // Drop any previous deal fields first, then re-add if still on offer,
+        // so a product that climbed back to normal loses them entirely.
+        let line = lines[i].replace(/ prevPrice: [\d.]+, priceDropAt: '[\d-]+',/, '');
+        const deal = d.prevPrice
+          ? ` prevPrice: ${d.prevPrice.toFixed(2)}, priceDropAt: '${d.priceDropAt}',`
+          : '';
+        lines[i] = line.replace(/price: [\d.]+,/, `price: ${d.now.toFixed(2)},${deal}`);
         break;
       }
     }
